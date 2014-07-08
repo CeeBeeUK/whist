@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140708080310) do
 
   create_table "hands", force: true do |t|
     t.integer  "no_of_cards"
+    t.integer  "suit_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

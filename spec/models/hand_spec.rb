@@ -12,9 +12,10 @@ describe Hand do
 		new_hand.no_of_cards = 7
 		expect(new_hand).to be_valid
   end
-
-  it 'should have a trump suit'
-
+  it 'should tell me the current trump suit' do
+    expect(new_hand.suit_id).to eql(1)
+    expect(new_hand.suit.name).to eql('Spades')
+  end
 	describe 'validations' do
 		it 'should not allow cards to be less than 1' do
 			new_hand.no_of_cards = 0
@@ -24,6 +25,17 @@ describe Hand do
 		it 'should not allow cards to be greater than 7' do
 			new_hand.no_of_cards=8
 			expect(new_hand).to be_invalid
-		end
-	end
+    end
+
+    it 'should have a trump suit' do
+      new_hand.suit_id = nil
+      expect(new_hand).to be_invalid
+    end
+  end
+
+  describe 'associations' do
+    it 'should describe the trump suit' do
+      expect(new_hand).to respond_to(:suit)
+    end
+  end
 end	
