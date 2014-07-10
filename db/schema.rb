@@ -11,25 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140708132133) do
+ActiveRecord::Schema.define(version: 20140709140646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "game_players", force: true do |t|
-    t.integer  "game_id"
-    t.integer  "player_id"
+  create_table "games", force: true do |t|
+    t.integer  "trump_type_id"
+    t.integer  "winner_id"
+    t.integer  "score"
+    t.integer  "status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "games", force: true do |t|
-    t.integer  "trump_type_id"
+  create_table "hand_players", force: true do |t|
+    t.integer  "game_id"
+    t.integer  "hand_id"
+    t.integer  "player_id"
+    t.integer  "bid"
+    t.integer  "won"
+    t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "hands", force: true do |t|
+    t.integer  "game_id"
     t.integer  "no_of_cards"
     t.integer  "suit_id"
     t.datetime "created_at"
@@ -37,6 +45,12 @@ ActiveRecord::Schema.define(version: 20140708132133) do
   end
 
   create_table "players", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "statuses", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

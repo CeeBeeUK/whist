@@ -11,6 +11,12 @@ gem 'font-awesome-rails'
 #gem 'sqlite3'
 gem 'pg'
 
+# cocoon enables nested forms
+gem 'cocoon', '~>1.2.0'
+
+# Select multiple with autocomplete
+gem 'select2-rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
