@@ -12,7 +12,7 @@ ActiveRecord::Base.connection.execute("TRUNCATE TABLE statuses RESTART IDENTITY;
 
 puts 'Create'
 puts '-Suits'
-Suit.create([{name:'Spades'}, {name:'Hearts'}, {name:'Clubs'}, {name:'Diamonds'}])
+Suit.create([{name: 'To be chosen'}, {name:'Spades'}, {name:'Hearts'}, {name:'Clubs'}, {name:'Diamonds'}])
 puts '-Trump types'
 TrumpType.create([{name:'Random'}, {name:'WinnerPicks'}])
 puts '-Statuses'
