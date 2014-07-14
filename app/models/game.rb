@@ -18,7 +18,8 @@ class Game < ActiveRecord::Base
     self.status_id  ||= 1           #will set the default value only if it's nil
   end
   def player_list
-    players.distinct
+    players.select('DISTINCT(players.id)')
+  #   @user.select("DISTINCT(badges.id), badges.*").badges.order("badges.id").order("badges.created_at DESC")
   end
 
   # def has_players

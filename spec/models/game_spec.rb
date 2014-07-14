@@ -35,13 +35,11 @@ describe Game do
     @service = GameService.new
     game = @service.start_game(1)
     game.save
-    expect(game.players.size).to eql(0)
+    expect(game.player_list.size).to eql(0)
     @service.add_player(game,'test player')
-    expect(game.players.select(:id).distinct.size).to eql(1)
-    # expect(game.can_start).to eql(false)
+    expect(game.player_list.size).to eql(1)
     @service.add_player(game,'test player 2')
     expect(game.player_list.size).to eql(2)
-    # expect(game.can_start).to eql(true)
   end
 
   it 'should have a status indicator for in progress and complete' do
