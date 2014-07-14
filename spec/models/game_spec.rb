@@ -7,28 +7,19 @@ describe Game do
     expect(game).to be_valid
   end
 
-	xit 'should let me create a new game' do
-		expect(game).to be_invalid
-    @service = AddPlayerService.new
-    @service.add_player(game,'test player')
-    @service.add_player(game,'test player 2')
-    expect(game).to be_valid
-  end
-
-	xit 'should have 2 - 7 players' do
+	it 'should raise an error if more than 7 players are added' do
     @service = GameService.new
+    game = @service.start_game(1)
+    game.save
     @service.add_player(game,'test player1')
-    expect(game).to be_invalid
     @service.add_player(game,'test player 2')
-    expect(game).to be_valid
     @service.add_player(game,'test player 3')
     @service.add_player(game,'test player 4')
     @service.add_player(game,'test player 5')
     @service.add_player(game,'test player 6')
     @service.add_player(game,'test player 7')
-    expect(game).to be_valid
-    @service.add_player(game,'test player 8')
-    expect(game).to be_invalid
+
+    expect{@service.add_player(game,'test player 8')}.to raise_error('Too many players')
   end
 
   it 'should let users add players' do
@@ -75,10 +66,6 @@ describe Game do
   it 'should have a trump type' do
     expect(game.trump_type_id).to eql(1)
     expect(game.trump_type.name).to eql('Random')
-  end
-
-  it 'should let me start the games' do
-
   end
 
   describe 'associations' do

@@ -14,6 +14,9 @@ class GameService
     @game
   end
   def add_player(game, player_name)
+    if game.player_list.size==7
+      raise 'Too many players'
+    end
     # puts "Number of players in DB = #{Player.count}"
     @player = Player.find_by(name: player_name)
     # puts "Player found id = #{@player}"
