@@ -16,6 +16,6 @@ Suit.create([{name: 'To be chosen'}, {name:'Spades'}, {name:'Hearts'}, {name:'Cl
 puts '-Trump types'
 TrumpType.create([{name:'Random'}, {name:'WinnerPicks'}])
 puts '-Statuses'
-Status.create([{name:'In progress'},{name:'Complete'}])
+Status.create([{name: 'Setup'}, {name:'In progress'},{name:'Complete'}])
 
 puts 'Done'

@@ -6,10 +6,16 @@
 <ul class="nav nav-pills nav-stacked">
   <li class="">
     <a href="#">
-      <span class="badge pull-right"><%= Game.in_progress.count %></span>
-      Games in progress
+      <span class="badge pull-right"><%= Game.setup.count %></span>
+      Games being set up
     </a>
   </li>
+  <li class="">
+      <a href="#">
+        <span class="badge pull-right"><%= Game.in_progress.count %></span>
+        Games in progress
+      </a>
+    </li>
   <li class="">
     <a href="#">
       <span class="badge pull-right"><%= Game.complete.count %></span>

@@ -26,11 +26,14 @@ class Game < ActiveRecord::Base
   #   errors.add(:base, 'must have between 2 and 7 players') if !(2..7).include?(self.players.size)
   # end
 
+  def self.setup
+    where('status_id=?',1)
+  end
   def self.in_progress
-    where('status_id = ?', 1)
+    where('status_id = ?', 2)
   end
   def self.complete
-    where('status_id=?',2)
+    where('status_id=?',3)
   end
   # def can_start()
   #   result = false

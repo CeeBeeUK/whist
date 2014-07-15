@@ -1,0 +1,13 @@
+<h1>Add player to game #<%= @game.id %></h1>
+<h2>There are currently <%= @game.player_list.size %> players</h2>
+<h2>It has <%= @game.hands.size %> hands</h2>
+
+<%= form_for @hp, :url => { :action => 'create', :id => @game.id } do |f| %>
+    <%= f.label :name %>
+    <%= f.collection_select(:player_id, @players, :id, :name, {:include_blank => 'Please select'}, { :class=>'player_name_select2' }) %>
+    <div class="actions">
+      <%= f.hidden_field :game_id, value: @game.id %>
+      <%= f.submit :class=>'btn btn-success', :value=>'Add player' %>
+    </div>
+<% end %>
+

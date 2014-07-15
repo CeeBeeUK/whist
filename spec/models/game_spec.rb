@@ -18,7 +18,6 @@ describe Game do
     @service.add_player(game,'test player 5')
     @service.add_player(game,'test player 6')
     @service.add_player(game,'test player 7')
-
     expect{@service.add_player(game,'test player 8')}.to raise_error('Too many players')
   end
 
@@ -61,7 +60,6 @@ describe Game do
     expect(game.hands[11].no_of_cards).to eql(6)
     expect(game.hands[12].no_of_cards).to eql(7)
   end
-
 
   it 'should have a trump type' do
     expect(game.trump_type_id).to eql(1)

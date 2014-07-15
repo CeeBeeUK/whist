@@ -116,10 +116,10 @@ jQuery.fn = jQuery.prototype = {
 	},
 
 	// Take an array of elements and push it onto the stack
-	// (returning the new matched element set)
+	// (returning the orig_new matched element set)
 	pushStack: function( elems ) {
 
-		// Build a new jQuery matched element set
+		// Build a orig_new jQuery matched element set
 		var ret = jQuery.merge( this.constructor(), elems );
 
 		// Add the old object onto the stack (as a reference)
@@ -497,7 +497,7 @@ jQuery.extend({
 			isArray = isArraylike( elems ),
 			ret = [];
 
-		// Go through the array, translating each of the items to their new values
+		// Go through the array, translating each of the items to their orig_new values
 		if ( isArray ) {
 			for ( ; i < length; i++ ) {
 				value = callback( elems[ i ], i, arg );
@@ -1525,7 +1525,7 @@ getText = Sizzle.getText = function( elem ) {
 		}
 	} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
 		// Use textContent for elements
-		// innerText usage removed for consistency of new lines (jQuery #11153)
+		// innerText usage removed for consistency of orig_new lines (jQuery #11153)
 		if ( typeof elem.textContent === "string" ) {
 			return elem.textContent;
 		} else {
@@ -2018,7 +2018,7 @@ for ( i in { submit: true, reset: true } ) {
 	Expr.pseudos[ i ] = createButtonPseudo( i );
 }
 
-// Easy API for creating new setFilters
+// Easy API for creating orig_new setFilters
 function setFilters() {}
 setFilters.prototype = Expr.filters = Expr.pseudos;
 Expr.setFilters = new setFilters();
@@ -3706,7 +3706,7 @@ function internalData( elem, name, data, pvt /* Internal Use Only */ ) {
 	}
 
 	if ( !id ) {
-		// Only DOM nodes need a new unique ID for each element since their data
+		// Only DOM nodes need a orig_new unique ID for each element since their data
 		// ends up in the global cache
 		if ( isNode ) {
 			id = elem[ internalKey ] = deletedIds.pop() || jQuery.guid++;
@@ -4907,7 +4907,7 @@ jQuery.removeEvent = document.removeEventListener ?
 	};
 
 jQuery.Event = function( src, props ) {
-	// Allow instantiation without the 'new' keyword
+	// Allow instantiation without the 'orig_new' keyword
 	if ( !(this instanceof jQuery.Event) ) {
 		return new jQuery.Event( src, props );
 	}
@@ -5861,7 +5861,7 @@ jQuery.fn.extend({
 	replaceWith: function() {
 		var arg = arguments[ 0 ];
 
-		// Make the changes, replacing each context element with the new content
+		// Make the changes, replacing each context element with the orig_new content
 		this.domManip( arguments, function( elem ) {
 			arg = this.parentNode;
 
@@ -5872,7 +5872,7 @@ jQuery.fn.extend({
 			}
 		});
 
-		// Force removal if there was no new content (e.g., from empty arguments)
+		// Force removal if there was no orig_new content (e.g., from empty arguments)
 		return arg && (arg.length || arg.nodeType) ? this : this.remove();
 	},
 
@@ -6040,7 +6040,7 @@ function defaultDisplay( nodeName ) {
 			// Use the already-created iframe if possible
 			iframe = (iframe || jQuery( "<iframe frameborder='0' width='0' height='0'/>" )).appendTo( doc.documentElement );
 
-			// Always write a new HTML skeleton so Webkit and Firefox don't choke on reuse
+			// Always write a orig_new HTML skeleton so Webkit and Firefox don't choke on reuse
 			doc = ( iframe[ 0 ].contentWindow || iframe[ 0 ].contentDocument ).document;
 
 			// Support: IE
@@ -6145,7 +6145,7 @@ if ( window.getComputedStyle ) {
 				minWidth = style.minWidth;
 				maxWidth = style.maxWidth;
 
-				// Put in the new values to get a computed value out
+				// Put in the orig_new values to get a computed value out
 				style.minWidth = style.maxWidth = style.width = ret;
 				ret = computed.width;
 
@@ -6194,7 +6194,7 @@ if ( window.getComputedStyle ) {
 			rs = elem.runtimeStyle;
 			rsLeft = rs && rs.left;
 
-			// Put in the new values to get a computed value out
+			// Put in the orig_new values to get a computed value out
 			if ( rsLeft ) {
 				rs.left = elem.currentStyle.left;
 			}
@@ -6394,7 +6394,7 @@ jQuery.swap = function( elem, options, callback, args ) {
 	var ret, name,
 		old = {};
 
-	// Remember the old values, and insert the new ones
+	// Remember the old values, and insert the orig_new ones
 	for ( name in options ) {
 		old[ name ] = elem.style[ name ];
 		elem.style[ name ] = options[ name ];
@@ -6798,7 +6798,7 @@ if ( !support.opacity ) {
 				}
 			}
 
-			// otherwise, set new filter values
+			// otherwise, set orig_new filter values
 			style.filter = ralpha.test( filter ) ?
 				filter.replace( ralpha, opacity ) :
 				filter + " " + opacity;
@@ -7836,7 +7836,7 @@ jQuery.extend({
 					if ( jQuery.inArray( jQuery.valHooks.option.get( option ), values ) >= 0 ) {
 
 						// Support: IE6
-						// When new option element is added to select box we need to
+						// When orig_new option element is added to select box we need to
 						// force reflow of newly added node in order to workaround delay
 						// of initialization properties
 						try {
@@ -8070,7 +8070,7 @@ if ( !getSetAttribute ) {
 	// This fixes almost every IE6/7 issue
 	nodeHook = {
 		set: function( elem, value, name ) {
-			// Set the existing or create a new attribute node
+			// Set the existing or create a orig_new attribute node
 			var ret = elem.getAttributeNode( name );
 			if ( !ret ) {
 				elem.setAttributeNode(
@@ -8504,7 +8504,7 @@ jQuery.parseJSON = function( data ) {
 		// Commas must not follow "[", "{", or ","
 		requireNonComma = open || comma;
 
-		// Determine new depth
+		// Determine orig_new depth
 		// array/object open ("[" or "{"): depth += true - false (increment)
 		// array/object close ("]" or "}"): depth += false - true (decrement)
 		// other cases ("," or primitive): depth += true - true (numeric cast)
@@ -9008,7 +9008,7 @@ jQuery.extend({
 					if ( map ) {
 						if ( state < 2 ) {
 							for ( code in map ) {
-								// Lazy-add the new callback in a way that preserves old ones
+								// Lazy-add the orig_new callback in a way that preserves old ones
 								statusCode[ code ] = [ statusCode[ code ], map[ code ] ];
 							}
 						} else {
@@ -9073,7 +9073,7 @@ jQuery.extend({
 		// We can fire global events as of now if asked to
 		fireGlobals = s.global;
 
-		// Watch for a new set of requests
+		// Watch for a orig_new set of requests
 		if ( fireGlobals && jQuery.active++ === 0 ) {
 			jQuery.event.trigger("ajaxStart");
 		}
@@ -13113,7 +13113,7 @@ return jQuery;
 
     $tip.addClass('in')
 
-    // check to see if placing tip in new offset caused the tip to resize itself
+    // check to see if placing tip in orig_new offset caused the tip to resize itself
     var actualWidth  = $tip[0].offsetWidth
     var actualHeight = $tip[0].offsetHeight
 

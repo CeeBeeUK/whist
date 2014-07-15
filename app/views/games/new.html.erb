@@ -15,32 +15,23 @@
           </ul>
         </div>
     <% end %>
-<h3>Scoring type</h3>
-<div class="form-group">
-  <div class="radio">
-    <label>
-      <%= f.radio_button :trump_type_id, 1 %>
-      Random - trumps are allocated at start of game, cannot be same suit two hands running
-    </label>
-  </div>
-  <div class="radio">
-    <label>
-      <%= f.radio_button :trump_type_id, 2 %>
-      Winner - first round is random, subsequent rounds, winner picks trumps after seeing hand
-    </label>
-  </div>
-</div>
-<h3>Players</h3>
-<div id="players">
-  <%= f.fields_for :players do |player| %>
-      <%= render 'player_fields', :f => player %>
-  <% end %>
-  <div class="links">
-    <%= link_to_add_association 'add player', f, :players %>
-  </div>
-</div>
-<div class="actions">
-  <%= f.hidden_field :status_id %>
-  <%= f.submit :class=>'btn btn-success', :value=>'Start game' %>
-</div>
+    <h3>Scoring type</h3>
+    <div class="form-group">
+      <div class="radio">
+        <label>
+          <%= f.radio_button :trump_type_id, 1 %>
+          Random - trumps are allocated at start of game, cannot be same suit two hands running
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <%= f.radio_button :trump_type_id, 2 %>
+          Winner - first round is random, subsequent rounds, winner picks trumps after seeing hand
+        </label>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.hidden_field :status_id %>
+      <%= f.submit :class=>'btn btn-success', :value=>'Start game' %>
+    </div>
 <% end %>
