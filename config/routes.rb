@@ -1,7 +1,7 @@
 Whist::Application.routes.draw do
 
-  get "hand_players/new"
- post "hand_players/create"
+  get "hand_players/new/:id" => 'hand_players#new'
+ post "hand_players/create/:id" => 'hand_players#create'
   resources :games
   resources :hand_players
  #  get 'games/orig_new' => 'games#setup'

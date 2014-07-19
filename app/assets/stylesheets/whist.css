@@ -1,0 +1,27 @@
+html, body {
+    height:100%
+}
+body {
+    position:relative;
+}
+#wrapper {
+    position:relative;
+    min-height:100%;
+}
+#header, #footer {
+    background:#285e8e;
+    color:#FFFFFF;
+}
+#header {
+    font-size:xx-large;
+}
+
+#content {
+    height:100%;
+}
+
+#footer {
+    height:3em;/*must equal #wrapper bottom padding*/
+    padding-top:10px;
+    vertical-align:middle;
+}

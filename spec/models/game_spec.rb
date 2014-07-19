@@ -21,6 +21,16 @@ describe Game do
     expect{@service.add_player(game,'test player 8')}.to raise_error('Too many players')
   end
 
+  it 'should raise an error if the same player is added twice' do
+    @service = GameService.new
+    game = @service.start_game(1)
+    game.save
+    @service.add_player(game,'test player 1')
+    expect{@service.add_player(game,'test player 1')}.to raise_error('Player already in game')
+    # result = @service.add_player(game,'test player 1')
+    # expect(result).to eql(false)
+  end
+
   it 'should let users add players' do
     @service = GameService.new
     game = @service.start_game(1)

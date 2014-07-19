@@ -18,7 +18,7 @@ class Game < ActiveRecord::Base
     self.status_id  ||= 1           #will set the default value only if it's nil
   end
   def player_list
-    players.select('DISTINCT(players.id)')
+    Player.where(:id => players.select('DISTINCT(players.id)'))
   #   @user.select("DISTINCT(badges.id), badges.*").badges.order("badges.id").order("badges.created_at DESC")
   end
 
@@ -35,11 +35,11 @@ class Game < ActiveRecord::Base
   def self.complete
     where('status_id=?',3)
   end
-  # def can_start()
-  #   result = false
-  #   if (2..7).include?(players.size)
-  #     result = true
-  #   end
-  #   result
-  # end
+  def can_start()
+    result = false
+    if (2..7).include?(player_list.size)
+      result = true
+    end
+    result
+  end
 end

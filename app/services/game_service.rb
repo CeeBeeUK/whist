@@ -21,7 +21,13 @@ class GameService
     @player = Player.find_by(id: player)
     # puts "Player found id = #{@player}"
     if @player.nil?
-      @player = Player.create(name: player)
+      @player = Player.find_by(name: player)
+      if @player.nil?
+        @player = Player.create(name: player)
+      end
+    end
+    if game.players.include? @player || @player.nil?
+      raise 'Player already in game'
     end
     game.hands.each do |h|
       h.hand_players << HandPlayer.new( player_id: @player.id )

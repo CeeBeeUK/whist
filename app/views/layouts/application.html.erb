@@ -8,7 +8,16 @@
 </head>
 <body>
 
-<%= yield %>
-
+<div id="wrapper" class="container">
+    <header id="header" class="row col-xs-12">
+        <div>Whist</div>
+    </header>
+    <div id="content" class="row col-xs-8 col-xs-offset-2">
+    <%= yield %>
+    </div>
+    <footer id="footer" class="navbar navbar-fixed-bottom col-xs-12">
+      &copy; Colin Bruce 2014
+    </footer>
+</div>
 </body>
 </html>
