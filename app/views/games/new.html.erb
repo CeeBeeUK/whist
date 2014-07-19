@@ -1,21 +1,19 @@
-<h2>Set up game</h2>
-
-
-
+<h2>Choose game type</h2>
 <%= form_for (@game) do |f| %>
-    <h2>Options</h2>
     <% if @game.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@game.errors.count, "issue") %> prevented this game from starting:</h2>
-
-          <ul>
-            <% @game.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
+        <div id="error_explanation" class="panel panel-danger">
+            <div class="panel-heading">
+                <h2 class="panel-title"><%= pluralize(@game.errors.count, "issue") %> prevented you from proceeding:</h2>
+            </div>
+            <div class="panel-body">
+                <ul>
+                <% @game.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+                </ul>
+            </div>
         </div>
     <% end %>
-    <h3>Scoring type</h3>
     <div class="form-group">
       <div class="radio">
         <label>
@@ -32,6 +30,6 @@
     </div>
     <div class="actions">
       <%= f.hidden_field :status_id %>
-      <%= f.submit :class=>'btn btn-success', :value=>'Start game' %>
+      <%= f.submit :class=>'btn btn-success', :value=>'Pick players' %>
     </div>
 <% end %>

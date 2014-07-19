@@ -1,9 +1,9 @@
-html, body {
-    height:100%
-}
-body {
-    position:relative;
-}
+/*html, body {*/
+    /*height:100%*/
+/*}*/
+/*body {*/
+    /*position:relative;*/
+/*}*/
 #wrapper {
     position:relative;
     min-height:100%;
@@ -16,12 +16,12 @@ body {
     font-size:xx-large;
 }
 
-#content {
-    height:100%;
-}
+/*#content {*/
+    /*height:100%;*/
+/*}*/
 
 #footer {
-    height:3em;/*must equal #wrapper bottom padding*/
+    height:3em;
     padding-top:10px;
     vertical-align:middle;
 }
