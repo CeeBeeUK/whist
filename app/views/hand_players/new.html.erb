@@ -1,6 +1,11 @@
-<h1>Add player to game #<%= @game.id %></h1>
+<h1>Step 2 - Add players</h1>
 <h2>There <%= 'is'.pluralize(@game.player_list.size) %> currently <%= pluralize(@game.player_list.size, 'player') %></h2>
-<h2>It has <%= @game.hands.size %> hands</h2>
+<ul>
+<% @game.player_list.each do |p| %>
+    <li><%= p.name %></li>
+<% end %>
+</ul>
+<!--h2>It has <%= @game.hands.size %> hands</h2-->
 <% if @hp.errors.any? %>
     <div id="error_explanation" class="panel panel-danger">
         <div class="panel-heading">
@@ -16,13 +21,15 @@
     </div>
 <% end %>
 <%= form_for @hp, :url => { :action => 'create', :id => @game.id } do |f| %>
+    <div>
     <%= f.label :name %>
     <%= f.collection_select(:player_id, @players, :id, :name, {:include_blank => 'Please select'}, { :class=>'player_name_select2' }) %>
+    </div>
     <div class="actions">
       <%= f.hidden_field :game_id, value: @game.id %>
-      <button type="submit" class="btn btn-success"><span class="fa fa-plus-square fa-fw"></span>Add player</button>
+      <button type="submit" class="btn btn-success">Add player <span class="fa fa-plus-square fa-fw"></span></button>
     </div>
 <% end %>
 <% if @game.can_start %>
-    <%= link_to raw('<span class="fa fa-arrow-circle-right"></span> Start game'), games_path, {class: 'btn btn-success', style: 'color:#ffffff;'} %>
+    <%= link_to raw('Start game <span class="fa fa-fw fa-arrow-circle-right"></span>'), games_path, {class: 'btn btn-success', style: 'color:#ffffff;'} %>
 <% end %>
