@@ -13,7 +13,7 @@ describe Hand do
 		expect(new_hand).to be_valid
   end
   it 'should tell me the current trump suit' do
-    expect(new_hand.suit_id).to eql(1)
+    expect(new_hand.suit_id).to eql(2)
     expect(new_hand.suit.name).to eql('Spades')
   end
 	describe 'validations' do

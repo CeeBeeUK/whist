@@ -6,10 +6,8 @@ class Game < ActiveRecord::Base
   belongs_to :trump_type
   has_many :hands
   has_many :hand_players, :through => :hands
-   has_many :players, :through => :hand_players
+  has_many :players, :through => :hand_players
   belongs_to :status
-
-  # accepts_nested_attributes_for :players, :reject_if => :all_blank, :allow_destroy => true
 
   after_initialize :init
 
@@ -19,13 +17,7 @@ class Game < ActiveRecord::Base
   end
   def player_list
     Player.where(:id => players.select('DISTINCT(players.id)'))
-  #   @user.select("DISTINCT(badges.id), badges.*").badges.order("badges.id").order("badges.created_at DESC")
   end
-
-  # def has_players
-  #   errors.add(:base, 'must have between 2 and 7 players') if !(2..7).include?(self.players.size)
-  # end
-
   def self.setup
     where('status_id=?',1)
   end

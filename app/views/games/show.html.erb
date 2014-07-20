@@ -1,6 +1,15 @@
 <h1><%= @game.trump_type.name %> trump game started <%= @game.created_at.strftime('%e %b %y') %></h1>
-<h2>It has <%= @game.hands.size %> hands</h2>
 <h3>It has <%= @game.player_list.size %> players</h3>
 <% @game.player_list.each do |p| %>
     <div><%= p.name  %></div>
+<% end %>
+
+<h2>It has <%= @game.hands.size %> hands</h2>
+<% @game.hands.each do |h| %>
+    <div class="row">
+        <div class="col-xs-offset-1 col-xs-11 hand-row">
+
+            <span class="suit <%= h.suit.name %>"><%= h.suit.name %></span><span>Round x</span>
+        </div>
+    </div>
 <% end %>

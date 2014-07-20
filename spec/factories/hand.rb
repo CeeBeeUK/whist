@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :hand do
     no_of_cards 1
-    suit_id 1
+    suit_id 2
   end
 end

@@ -34,6 +34,29 @@ a.home-button {
     color:#FFFFFF;
     text-decoration: none;
 }
+.hand-row {
+    line-height: 80px;
+    min-height: 80px;
+    height: 80px;
+}
+.suit{
+    display:inline-block;
+    width:80px;
+    background: url('/assets/suits.jpg') no-repeat;
+}
+
+.Spades {
+    background-position: top left;
+}
+.Clubs {
+    background-position: top right
+}
+.Hearts {
+    background-position: bottom right;
+}
+.Diamonds {
+    background-position: bottom left;
+}
 @media (min-width: 992) {
 
 

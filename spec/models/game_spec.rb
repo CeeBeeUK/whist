@@ -42,9 +42,9 @@ describe Game do
     expect(game.player_list.size).to eql(2)
   end
 
-  it 'should have a status indicator for in progress and complete' do
+  it 'should have a status indicator for setup,  in progress and complete' do
     expect(game.status_id).to eql(1)
-    expect(game.status.name).to eql('In progress')
+    expect(game.status.name).to eql('Setup')
   end
 
   it 'should have 13 hands once saved' do
@@ -75,7 +75,47 @@ describe Game do
     expect(game.trump_type_id).to eql(1)
     expect(game.trump_type.name).to eql('Random')
   end
-
+  describe 'type' do
+    describe 'winner' do
+      it 'should have first hand as random and all others as "To be chosen""' do
+        @g =GameService.new
+        game = @g.start_game(2)
+        expect(game.hands[0].suit_id).to be > 1
+        expect((game.hands[1]).suit.name).to eql('To be chosen')
+        expect(game.hands[1].suit_id).to eql(1)
+        expect(game.hands[2].suit_id).to eql(1)
+        expect(game.hands[3].suit_id).to eql(1)
+        expect(game.hands[4].suit_id).to eql(1)
+        expect(game.hands[5].suit_id).to eql(1)
+        expect(game.hands[6].suit_id).to eql(1)
+        expect(game.hands[7].suit_id).to eql(1)
+        expect(game.hands[8].suit_id).to eql(1)
+        expect(game.hands[9].suit_id).to eql(1)
+        expect(game.hands[10].suit_id).to eql(1)
+        expect(game.hands[11].suit_id).to eql(1)
+        expect(game.hands[12].suit_id).to eql(1)
+      end
+    end
+    describe 'Random' do
+      it 'should have all hands as random' do
+        @g =GameService.new
+        game = @g.start_game(1)
+        expect(game.hands[0].suit_id).to be > 1
+        expect(game.hands[1].suit_id).to be > 1
+        expect(game.hands[2].suit_id).to be > 1
+        expect(game.hands[3].suit_id).to be > 1
+        expect(game.hands[4].suit_id).to be > 1
+        expect(game.hands[5].suit_id).to be > 1
+        expect(game.hands[6].suit_id).to be > 1
+        expect(game.hands[7].suit_id).to be > 1
+        expect(game.hands[8].suit_id).to be > 1
+        expect(game.hands[9].suit_id).to be > 1
+        expect(game.hands[10].suit_id).to be > 1
+        expect(game.hands[11].suit_id).to be > 1
+        expect(game.hands[12].suit_id).to be > 1
+      end
+    end
+  end
   describe 'associations' do
     it 'should describe the trump type' do
       expect(game).to respond_to(:trump_type)

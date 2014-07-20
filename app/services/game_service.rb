@@ -1,14 +1,18 @@
 class GameService
   def start_game(trump_type)
     @game = Game.new(trump_type_id: trump_type, status_id: 1)
-    @trumpid = rand(2..5)
+    @trump_sequence = (2..5).to_a.sort{ rand() - 0.5 }[0..4]
+    x = 0;
+    @this_round_trump = @trump_sequence[x]
+    @this_suit = Suit.find(@this_round_trump)
     [7,6,5,4,3,2,1, 2, 3, 4, 5,6,7].each do |card|
-      @game.hands << Hand.create(no_of_cards: card, suit_id:  @trumpid)
-      if trump_type==1
-        @trumpid = 1
+      @new_hand = Hand.new(no_of_cards: card, suit: @this_suit )
+      @game.hands << @new_hand
+      if trump_type==2
+        @this_suit = Suit.find(1)
       else
-
-        @trumpid = rand(2..5)
+        x = (x<=2 ? x+1 : 0)
+        @this_suit = Suit.find(@trump_sequence[x])
       end
     end
     @game
