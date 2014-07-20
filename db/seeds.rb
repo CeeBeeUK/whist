@@ -16,7 +16,7 @@ ActiveRecord::Base.connection.execute("TRUNCATE TABLE hand_players RESTART IDENT
 
 puts 'Create'
 puts '-Suits'
-Suit.create([{name: 'To be chosen'}, {name:'Spades'}, {name:'Hearts'}, {name:'Clubs'}, {name:'Diamonds'}])
+Suit.create([{name: 'To be chosen'}, {name:'Spades', text:'&spades;'}, {name:'Hearts', text:'&hearts;'}, {name:'Clubs', text:'&clubs;'}, {name:'Diamonds', text:'&diams;'}])
 puts '-Trump types'
 TrumpType.create([{name:'Random'}, {name:'WinnerPicks'}])
 puts '-Statuses'

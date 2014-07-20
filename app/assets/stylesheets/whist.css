@@ -15,12 +15,10 @@ html, body {
 #header {
     font-size:xx-large;
 }
-
 #content {
     min-height:100%;
 }
-
-#footer {
+#footerx {
     left:0;
     right:0;
     bottom:0;
@@ -34,29 +32,17 @@ a.home-button {
     color:#FFFFFF;
     text-decoration: none;
 }
-.hand-row {
-    line-height: 80px;
-    min-height: 80px;
-    height: 80px;
+td.center-align {
+    vertical-align: middle !important;
 }
-.suit{
-    display:inline-block;
-    width:80px;
-    background: url('/assets/suits.jpg') no-repeat;
+td.suits {
+    font-size:xx-large;
+}
+td.suits.Hearts,
+td.suits.Diamonds {
+    color:red;
 }
 
-.Spades {
-    background-position: top left;
-}
-.Clubs {
-    background-position: top right
-}
-.Hearts {
-    background-position: bottom right;
-}
-.Diamonds {
-    background-position: bottom left;
-}
 @media (min-width: 992) {
 
 
