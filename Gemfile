@@ -46,6 +46,7 @@ end
 group :test, :development do
   gem 'rspec'
 	gem 'rspec-rails'
+    gem 'better_errors'
 	gem 'factory_girl_rails'
 	gem 'guard-rspec'
 	gem 'guard'
