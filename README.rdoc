@@ -1,6 +1,6 @@
 == WHIST
 
-Test project to gain ruby experience... and a littl bit of bootstrap
+Test project to gain ruby experience... and a little bit of bootstrap
 
 == Requirements
 
