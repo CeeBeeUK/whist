@@ -6,26 +6,16 @@ class HandPlayersController < ApplicationController
   end
 
   def create
-
     @service = GameService.new
     begin
-      puts '+++++++++++++++++++++++++'
-      puts params["hand_player"]['player_id']
-      puts '+++++++++++++++++++++++++'
-      puts "#{params}"
-      puts '+++++++++++++++++++++++++'
-
       if params["hand_player"]['player_id'].blank?
         raise 'Please select 2-7 players'
       end
-
-
+      @game = Game.find(hp_params['game_id'])
       params["hand_player"]['player_id'].each do |p|
-        puts "tried to load a game with #{hp_params['game_id']} and add played id #{p}"
-        @service.add_player(Game.find(hp_params['game_id']),p)
+        @service.add_player(@game,p)
       end
-      puts '+++++++++++++++++++++++++'
-      redirect_to action:'show', controller:'games', id: hp_params['game_id']
+      redirect_to game_path(@game)
     rescue => e
       @hp = HandPlayer.new(hp_params)
       @hp.errors[:base] << e.message

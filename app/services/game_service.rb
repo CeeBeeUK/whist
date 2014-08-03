@@ -17,13 +17,12 @@ class GameService
     end
     @game
   end
+
   def add_player(game, player)
     if game.player_list.size==7
       raise 'Too many players'
     end
-    # puts "Number of players in DB = #{Player.count}"
     @player = Player.find_by(id: player)
-    # puts "Player found id = #{@player}"
     if @player.nil?
       @player = Player.find_by(name: player)
       if @player.nil?
@@ -36,8 +35,5 @@ class GameService
     game.hands.each do |h|
       h.hand_players << HandPlayer.new( player_id: @player.id, game_id: game.id )
     end
-    # puts "Game.hands.size = #{game.hands.size}"
-    # puts "game.hand_players.size = #{game.hand_players.size}"
-    # puts "Game.players.size = #{game.players.size}"
   end
 end

@@ -1,9 +1,15 @@
 $(document).ready(function() {
 
     $(".player_name_select2").select2(
-    		{
-				  width:'250px',
-    			maximumSelectionSize: 7,
+        {
+          width:'250px',
+          maximumSelectionSize: 7
+        });
+
+    $(".player_name_select2_old").select2(
+        {
+          width:'250px',
+          maximumSelectionSize: 7,
           createSearchChoice:function(term, data) { 
             if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) 
               {return {id:term, text:term};} 
