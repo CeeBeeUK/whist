@@ -34,7 +34,7 @@ class GameService
       raise 'Player already in game'
     end
     game.hands.each do |h|
-      h.hand_players << HandPlayer.new( player_id: @player.id )
+      h.hand_players << HandPlayer.new( player_id: @player.id, game_id: game.id )
     end
     # puts "Game.hands.size = #{game.hands.size}"
     # puts "game.hand_players.size = #{game.hand_players.size}"

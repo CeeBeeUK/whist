@@ -9,15 +9,23 @@ class HandPlayersController < ApplicationController
 
     @service = GameService.new
     begin
-      if hp_params['player_id'].blank?
-        raise 'please select player'
+      puts '+++++++++++++++++++++++++'
+      puts params["hand_player"]['player_id']
+      puts '+++++++++++++++++++++++++'
+      puts "#{params}"
+      puts '+++++++++++++++++++++++++'
+
+      if params["hand_player"]['player_id'].blank?
+        raise 'Please select 2-7 players'
       end
 
-      if @service.add_player(Game.find(hp_params['game_id']),hp_params['player_id'])
-        redirect_to action:'new', id: hp_params['game_id']
-      else
-        redirect_to action:'new', id: hp_params['game_id']
+
+      params["hand_player"]['player_id'].each do |p|
+        puts "tried to load a game with #{hp_params['game_id']} and add played id #{p}"
+        @service.add_player(Game.find(hp_params['game_id']),p)
       end
+      puts '+++++++++++++++++++++++++'
+      redirect_to action:'show', controller:'games', id: hp_params['game_id']
     rescue => e
       @hp = HandPlayer.new(hp_params)
       @hp.errors[:base] << e.message
