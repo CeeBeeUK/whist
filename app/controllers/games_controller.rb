@@ -9,9 +9,6 @@ class GamesController < ApplicationController
 
   def create
     @service = GameService.new
-    puts '======================='
-    puts game_params['trump_type_id']
-    puts '======================='
     @game = @service.start_game(game_params['trump_type_id'])
     if @game.save
       redirect_to({controller: 'hand_players', action: 'new', id: @game.id})

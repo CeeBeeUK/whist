@@ -1,11 +1,10 @@
-<h1>Step 2 - Add players</h1>
-<h2>There <%= 'is'.pluralize(@game.player_list.size) %> currently <%= pluralize(@game.player_list.size, 'player') %></h2>
+<h2>Step 2 - Add players</h2>
+<h3>There <%= 'is'.pluralize(@game.player_list.size) %> currently <%= pluralize(@game.player_list.size, 'player') %></h3>
 <ul>
 <% @game.player_list.each do |p| %>
     <li><%= p.name %></li>
 <% end %>
 </ul>
-<!--h2>It has <%= @game.hands.size %> hands</h2-->
 <% if @hp.errors.any? %>
     <div id="error_explanation" class="panel panel-danger">
         <div class="panel-heading">
@@ -13,6 +12,7 @@
         </div>
         <div class="panel-body">
             <ul>
+                 <% halt %>
                 <% @hp.errors.full_messages.each do |msg| %>
                     <li><%= msg %></li>
                 <% end %>
@@ -23,13 +23,12 @@
 <%= form_for @hp, :url => { :action => 'create', :id => @game.id } do |f| %>
     <div>
     <%= f.label :name %>
-    <%= f.collection_select(:player_id, @players, :id, :name, {:include_blank => 'Please select'}, { :class=>'player_name_select2' }) %>
+<%= f.collection_select(:player_id, @players, :id, :name, {}, { :class=>'player_name_select2', :multiple=>'true' }) %>
+<!--         <input type='hidden' class="player_name_select2" id='hand_player_player_id' style='width:300px' data-source="<%= players_find_path %>" />  
+ -->
     </div>
     <div class="actions">
       <%= f.hidden_field :game_id, value: @game.id %>
-      <button type="submit" class="btn btn-success">Add player <span class="fa fa-plus-square fa-fw"></span></button>
+      <button type="submit" class="btn btn-success">Start game <span class="fa fa-fw fa-arrow-circle-right"></span></button>
     </div>
-<% end %>
-<% if @game.can_start %>
-    <%= link_to raw('Start game <span class="fa fa-fw fa-arrow-circle-right"></span>'), games_path, {class: 'btn btn-success', style: 'color:#ffffff;'} %>
 <% end %>

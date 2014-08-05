@@ -6,39 +6,21 @@ class HandPlayersController < ApplicationController
   end
 
   def create
-
     @service = GameService.new
     begin
-      if hp_params['player_id'].blank?
-        raise 'please select player'
+      if params["hand_player"]['player_id'].blank?
+        raise 'Please select 2-7 players'
       end
-
-      if @service.add_player(Game.find(hp_params['game_id']),hp_params['player_id'])
-        puts '------------'
-        puts 'okay'
-        puts '------------'
-        redirect_to action:'new', id: hp_params['game_id']
-      else
-        puts '------------'
-        puts 'validation error'
-        puts '------------'
-        redirect_to action:'new', id: hp_params['game_id']
+      @game = Game.find(hp_params['game_id'])
+      params["hand_player"]['player_id'].each do |p|
+        @service.add_player(@game,p)
       end
+      redirect_to game_path(@game)
     rescue => e
-      puts '------------'
-      puts 'rescued'
-      puts '------------'
-      puts "Detailed error: #{e.message}"
-      puts '----------------'
       @hp = HandPlayer.new(hp_params)
-      # @hp.errors.add(:player_id, e.message)
       @hp.errors[:base] << e.message
-      # @user.errors.add(:email, "Not valid")
-      # @user.errors[:base] << "This person is invalid because ..."
       @game = Game.find(hp_params['game_id'])
       render :new
-      #  render action: 'new', id: hp_params['game_id']
-      # redirect_to({controller: 'hand_players', action: 'new', id: hp_params['game_id']})
     end
   end
 

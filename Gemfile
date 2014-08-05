@@ -47,6 +47,7 @@ group :test, :development do
   gem 'rspec'
 	gem 'rspec-rails'
     gem 'better_errors'
+    gem 'binding_of_caller'
 	gem 'factory_girl_rails'
 	gem 'guard-rspec'
 	gem 'guard'
