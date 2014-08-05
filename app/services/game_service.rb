@@ -17,7 +17,7 @@ class GameService
     end
     # &#x1F0A1; = Ace of spades
     # &spades;
-    # http://en.wikipedia.org/wiki/Playing_Cards_(Unicode_block)
+    # http://en.wikipedia.org/wiki/Playing_Cards_(Unicode_block) 
     @game
   end
 
