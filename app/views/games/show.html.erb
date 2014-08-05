@@ -16,7 +16,7 @@
             <td class="suits center-align">
                 <button class="btn btn-xs btn-success">Start round</button>
                 <%= h.no_of_cards %>
-                <span alt="suits <%= h.suit.name %>"><%= raw(h.suit.text) %></span>
+                <span class="suits <%= h.suit.name %>" alt="Trumps = <%= h.suit.name %>"><%= raw(h.suit.text) %></span>
             </td>
 
           <% @game.player_list.each do  %>

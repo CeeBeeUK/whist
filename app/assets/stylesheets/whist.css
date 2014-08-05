@@ -39,8 +39,8 @@ td.center-align {
 td.suits {
     font-size:xx-large;
 }
-td.suits.Hearts,
-td.suits.Diamonds {
+span.suits.Hearts,
+span.suits.Diamonds {
     color:red;
 }
 
