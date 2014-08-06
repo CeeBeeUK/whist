@@ -17,7 +17,7 @@ html, body {
 }
 #content {
     min-height:100%;
-    margin-bottom: 1em;
+    margin-bottom: 3em;
 }
 #footer {
     left:0;
@@ -26,7 +26,6 @@ html, body {
     height:3em;
     position: absolute;
     padding-top:10px;
-    padding-left:15px;
     vertical-align:middle;
 }
 a.home-button {
