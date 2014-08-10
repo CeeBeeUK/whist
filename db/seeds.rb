@@ -28,6 +28,14 @@ TrumpType.create([{name:'Random'}, {name:'WinnerPicks'}])
 puts '-Statuses'
 Status.create([{name: 'Setup'}, {name:'In progress'},{name:'Complete'}])
 puts '-Players'
-Player.create([{name: 'Colin'}, {name:'Helen'},{name:'Joanne'}])
+Player.create([
+	{name:'Colin'},
+	{name:'Helen'},
+	{name:'Joanne'},
+	{name:'Ros'},
+	{name:'Fathead'},
+	{name:'Onge'},
+	{name:'Kerry'}
+	])
 
 puts 'Done'

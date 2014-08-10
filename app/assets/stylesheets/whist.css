@@ -47,7 +47,13 @@ span.suits.Diamonds {
 {
     width:98%;
 }
-@media (min-width: 992) {
 
+.end-of-name {
+    display: none;
+}
 
+@media (min-width: 720px) {
+    .end-of-name {
+        display: inline;
+    }
 }

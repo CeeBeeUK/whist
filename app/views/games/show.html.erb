@@ -1,12 +1,11 @@
-<h2><%= @game.trump_type.name %> trump game started <%= @game.created_at.strftime('%e %b %y') %></h2>
+<h2><%= @game.trump_type.name %> game, round <%= @game.next_round %> of <%= @game.hands.size %></h2>
 
-<h3>It has <%= @game.hands.size %> hands</h3>
 <table class="table">
     <thead>
         <tr>
             <th>Round</th>
         <% @game.player_list.each do |play| %>
-            <th><%= play.name %></th>
+            <th><%= play.name.to(0) %><span class="end-of-name"><%= play.name.from(1) %></th>
         <% end %>
         </tr>
     </thead>
@@ -14,11 +13,12 @@
     <% @game.hands.each do |h| %>
         <tr>
             <td class="suits center-align">
-                <button class="btn btn-xs btn-success">Start round</button>
                 <%= h.no_of_cards %>
                 <span class="suits <%= h.suit.name %>" alt="Trumps = <%= h.suit.name %>"><%= raw(h.suit.text) %></span>
+            <% if @game.next_round==h.sequence %>
+                <button class="btn btn-xs btn-success">Start round</button>
+            <% end %>
             </td>
-
           <% @game.player_list.each do  %>
             <td>&nbsp;</td>
           <% end %>
