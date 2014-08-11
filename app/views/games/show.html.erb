@@ -5,7 +5,7 @@
         <tr>
             <th>Round</th>
         <% @game.player_list.each do |play| %>
-            <th><%= play.name.to(0) %><span class="end-of-name"><%= play.name.from(1) %></th>
+            <th><span title="<%= play.name %>"><%= play.name.to(0) %><span class="end-of-name"><%= play.name.from(1) %></span></th>
         <% end %>
         </tr>
     </thead>

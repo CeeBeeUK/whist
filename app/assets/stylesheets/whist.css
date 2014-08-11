@@ -52,7 +52,7 @@ span.suits.Diamonds {
     display: none;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 480px) {
     .end-of-name {
         display: inline;
     }
