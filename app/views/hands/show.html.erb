@@ -1,0 +1,7 @@
+<h2>Round <%= @hand.sequence %></h2>
+<div>Player x should deal <%= @hand.no_of_cards %> cards</div>
+<% if @hand.suit.id < 5 %>
+<div>Trumps are <span class="suits <%= @hand.suit.name %>" alt="Trumps = <%= @hand.suit.name %>"><%= raw(@hand.suit.text) unless @hand.suit.id==5 %></span></div>
+<% else %>
+<div>Winner of last hand should pick trumps</div>
+<% end %>
