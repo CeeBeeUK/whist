@@ -16,7 +16,7 @@
                 <%= h.no_of_cards %>
                 <span class="suits <%= h.suit.name %>" alt="Trumps = <%= h.suit.name %>"><%= raw(h.suit.text) %></span>
             <% if @game.next_round==h.sequence %>
-                <button class="btn btn-xs btn-success">Start round</button>
+                <%= link_to 'Start round', hand_path(h), :class=>'btn btn-xs btn-success' %>
             <% end %>
             </td>
           <% @game.player_list.each do  %>

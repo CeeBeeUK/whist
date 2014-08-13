@@ -35,7 +35,7 @@ a.home-button {
 td.center-align {
     vertical-align: middle !important;
 }
-td.suits {
+.suits {
     font-size:xx-large;
 }
 span.suits.Hearts,

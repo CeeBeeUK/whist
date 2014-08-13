@@ -18,6 +18,19 @@ describe Hand do
 	it 'should have a sequence within the game' do
 		expect(new_hand.sequence).to eql(1)
 	end
+	it 'should have a dealer' do
+		expect(new_hand.dealer).to eql(1)
+	end
+	it 'should have a status of unstarted upon creation' do
+		expect(new_hand.status_id).to eql(1)
+	end
+	it 'should have a status of inprogress while playing' do
+		
+	end
+	it 'should have a status of complete when finished' do
+
+	end
+
 	describe 'validations' do
 		it 'should not allow cards to be less than 1' do
 			new_hand.no_of_cards = 0

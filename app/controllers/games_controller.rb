@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  before_action :authenticate_user!
   before_action :get_game, only: [:show]
   before_action :get_players, only: [:new]
 

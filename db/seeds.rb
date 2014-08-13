@@ -26,7 +26,7 @@ Suit.create([
 puts '-Trump types'
 TrumpType.create([{name:'Random'}, {name:'WinnerPicks'}])
 puts '-Statuses'
-Status.create([{name: 'Setup'}, {name:'In progress'},{name:'Complete'}])
+Status.create([{name: 'Unstarted'}, {name:'In progress'},{name:'Complete'}])
 puts '-Players'
 Player.create([
 	{name:'Colin'},

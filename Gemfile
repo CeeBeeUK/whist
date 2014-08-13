@@ -7,8 +7,6 @@ gem 'rails', '4.0.3'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 
-# Use sqlite3 as the database for Active Record
-#gem 'sqlite3'
 gem 'pg'
 
 # cocoon enables nested forms
@@ -26,8 +24,9 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+# Devise for user authentication
+gem 'devise'
+gem 'devise_invitable', '~> 1.3.4'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

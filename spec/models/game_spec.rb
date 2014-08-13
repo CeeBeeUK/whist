@@ -44,7 +44,7 @@ describe Game do
 
   it 'should have a status indicator for setup,  in progress and complete' do
     expect(game.status_id).to eql(1)
-    expect(game.status.name).to eql('Setup')
+    expect(game.status.name).to eql('Unstarted')
   end
 
   it 'should have 13 hands once saved' do
