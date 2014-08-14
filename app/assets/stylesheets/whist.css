@@ -17,7 +17,7 @@ html, body {
 }
 #content {
     min-height:100%;
-    margin-bottom: 1em;
+    margin-bottom: 3em;
 }
 #footer {
     left:0;
@@ -26,7 +26,6 @@ html, body {
     height:3em;
     position: absolute;
     padding-top:10px;
-    padding-left:15px;
     vertical-align:middle;
 }
 a.home-button {
@@ -36,11 +35,11 @@ a.home-button {
 td.center-align {
     vertical-align: middle !important;
 }
-td.suits {
+.suits {
     font-size:xx-large;
 }
-.suits.Hearts,
-.suits.Diamonds {
+span.suits.Hearts,
+span.suits.Diamonds {
     color:red;
 }
 
@@ -48,7 +47,13 @@ td.suits {
 {
     width:98%;
 }
-@media (min-width: 992) {
 
+.end-of-name {
+    display: none;
+}
 
+@media (min-width: 480px) {
+    .end-of-name {
+        display: inline;
+    }
 }

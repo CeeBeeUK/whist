@@ -14,6 +14,7 @@ class Game < ActiveRecord::Base
 
   def init
     self.status_id  ||= 1           #will set the default value only if it's nil
+    self.next_round ||= 1
   end
   def player_list
     Player.where(:id => players.select('DISTINCT(players.id)'))

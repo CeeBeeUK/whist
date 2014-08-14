@@ -44,7 +44,7 @@ describe Game do
 
   it 'should have a status indicator for setup,  in progress and complete' do
     expect(game.status_id).to eql(1)
-    expect(game.status.name).to eql('Setup')
+    expect(game.status.name).to eql('Unstarted')
   end
 
   it 'should have 13 hands once saved' do
@@ -74,6 +74,29 @@ describe Game do
   it 'should have a trump type' do
     expect(game.trump_type_id).to eql(1)
     expect(game.trump_type.name).to eql('Random')
+  end
+  
+  it 'should expose the next round to start'do
+    @gs = GameService.new
+    game = @gs.start_game(1)
+    expect(game.next_round).to eql(1)
+  end
+  it 'should have hands that run in sequence' do
+    @gs = GameService.new
+    game = @gs.start_game(1)
+    expect(game.hands[0].sequence).to eql(1)
+    expect(game.hands[1].sequence).to eql(2)
+    expect(game.hands[2].sequence).to eql(3)
+    expect(game.hands[3].sequence).to eql(4)
+    expect(game.hands[4].sequence).to eql(5)
+    expect(game.hands[5].sequence).to eql(6)
+    expect(game.hands[6].sequence).to eql(7)
+    expect(game.hands[7].sequence).to eql(8)
+    expect(game.hands[8].sequence).to eql(9)
+    expect(game.hands[9].sequence).to eql(10)
+    expect(game.hands[10].sequence).to eql(11)
+    expect(game.hands[11].sequence).to eql(12)
+    expect(game.hands[12].sequence).to eql(13)
   end
   describe 'type' do
     describe 'winner' do

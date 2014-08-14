@@ -3,10 +3,11 @@ class GameService
     @game = Game.new(trump_type_id: trump_type, status_id: 1)
     @trump_sequence = (2..5).to_a.sort{ rand() - 0.5 }[0..4]
     x = 0;
+    @i = 1;
     @this_round_trump = @trump_sequence[x]
     @this_suit = Suit.find(@this_round_trump)
     [7,6,5,4,3,2,1, 2, 3, 4, 5,6,7].each do |card|
-      @new_hand = Hand.new(no_of_cards: card, suit: @this_suit )
+      @new_hand = Hand.new(no_of_cards: card, suit: @this_suit, sequence:@i )
       @game.hands << @new_hand
       if @game.trump_type_id==2
         @this_suit = Suit.find(1)
@@ -14,10 +15,11 @@ class GameService
         x = (x<=2 ? x+1 : 0)
         @this_suit = Suit.find(@trump_sequence[x])
       end
+      @i+=1
     end
     # &#x1F0A1; = Ace of spades
     # &spades;
-    # http://en.wikipedia.org/wiki/Playing_Cards_(Unicode_block)
+    # http://en.wikipedia.org/wiki/Playing_Cards_(Unicode_block) 
     @game
   end
 

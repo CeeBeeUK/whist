@@ -1,4 +1,5 @@
 class HandPlayersController < ApplicationController
+  before_action :authenticate_user!
   before_action :configure, only: [:new, :create]
 
   def new

@@ -11,18 +11,29 @@
 
 <div id="wrapper" class="container">
     <header id="header" class="row">
-        <div class="col-xs-12 col-md-8 col-md-offset-1">
+        <div class="col-xs-2 col-md-2 col-md-offset-1">
           <h1><%= link_to 'Whist', root_path, class: 'home-button' %></h1>
+        </div>
+        <div class="col-xs-8 col-md-6">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+        </div>
+        <div class="col-xs-2 col-md-2">
+          <% if user_signed_in? %>
+            <%= link_to "Sign out as #{current_user.name}", destroy_user_session_path, :method => :delete %>
+          <% end %>
         </div>
     </header>
     <div id="content" class="row">
       <div class="col-xs-12 col-md-10 col-md-offset-1">
         <%= yield %>
       </div>
-    <footer id="footer" class="row">
-      <div class="col-xs-12 col-md-8 col-md-offset-2">&copy; Colin Bruce 2014</div>
-    </footer>
     </div>
+    <footer id="footer" class="">
+      <div class="col-xs-12 col-md-10 col-md-offset-1">
+        <div>&copy; Colin Bruce 2014</div>
+      </div>
+    </footer>
 </div>
 </body>
 </html>
