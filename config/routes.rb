@@ -1,6 +1,6 @@
 Whist::Application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => { :invitations => 'users/invitations' }
   get "players/find" => 'players#find'
   get "hand_players/new/:id" => 'hand_players#new'
   post "hand_players/create/:id" => 'hand_players#create'
