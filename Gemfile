@@ -28,6 +28,9 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
 gem 'devise_invitable', '~> 1.3.4'
 
+# Sortable lists?
+gem 'acts_as_list'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 

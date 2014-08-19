@@ -1,0 +1,53 @@
+<%= form_for :game, url: { action: "createplus" } do |f| %>
+	<h2>1. Select a trump type</h2>
+	<div class="form-group">
+      <div class="radio">
+        <label>
+          <%= f.radio_button :game, :trump_type_id, 1 %>
+          Random - trumps are allocated at start of game, randomly sequenced and repeating <br/>e.g.
+            <span class="suits Spades center-align" alt="spades">&spades;</span> ->
+            <span class="suits Hearts center-align" alt="hearts">&hearts;</span> ->
+            <span class="suits Clubs center-align" alt="clubs">&clubs;</span> ->
+            <span class="suits Diamonds center-align" alt="diamonds">&diams;</span>
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <%= f.radio_button :game, :trump_type_id, 2 %>
+          Winner - first round is random, subsequent rounds, winner picks trumps after seeing hand
+        </label>
+      </div>
+    </div>	
+    <h2>2. Select players</h2>
+    <%= select_tag 'nothing', options_from_collection_for_select(@players, 'id', 'name'), class: 'player_name_select2', placeholder: 'Choose a player', include_blank: true %>
+    <!--%= #collection_select(@players, :id, :name, {:include_blank => true }, { :class=>'player_name_select2', :placeholder=>'Choose a player' }) %-->
+
+	<input id="set_player" type="button" class="btn btn-success btn-xs" value="Set player" style="display:none;"/>
+    <ul id="player_list">
+	</ul>
+    <div id="actions" style="display:none;">
+ 		<hr/>
+ 		<%= f.submit :class=>'btn btn-success', :value=>'Start game' %>
+    </div>
+<% end %>
+
+
+<script>
+$(document).ready( function () {
+	$('.player_name_select2').on('change', function() {
+		var showButton = $(this).val()!='';
+		$('#set_player').toggle(showButton)
+	});
+	$('#set_player').on('click', function () {
+		var playernum = $('#player_list li').length;
+		var valToAdd = $(this).prev('.player_name_select2').val();
+		var txtToAdd = $('.player_name_select2 :selected').text();
+		$('#player_list').append('<li>'+txtToAdd+'<input name="hand_player[player_id]['+playernum+']" type="hidden" value="'+valToAdd+'" /></li>'); 
+		$('.player_name_select2 :selected').attr('disabled','disabled');
+		$(".player_name_select2").select2("val", "");
+		$('#actions').toggle(playernum>0);
+	});
+	// initial state
+	$('#set_player').addClass('start-hidden');
+});
+</script>

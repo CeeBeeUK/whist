@@ -15,6 +15,17 @@ html, body {
 #header {
     font-size:xx-large;
 }
+.header-normal {
+    font-size:large;
+    padding-top:1.5em;
+    text-align: right;
+}
+.header-normal a {
+    color:#ffffff;
+}
+.header-normal a:hover {
+    color:#ffffff;
+}
 #content {
     min-height:100%;
     margin-bottom: 3em;
@@ -43,15 +54,18 @@ span.suits.Diamonds {
     color:red;
 }
 
-.select2-container-multi .select2-choices li
-{
-    width:98%;
-}
+.select2-container .select2-choice abbr {top:5px!important;}
+.select2-container-multi .select2-choices li {width:98%;}
 
 .end-of-name {
     display: none;
 }
-
+.start-hidden {
+    display:none;
+}
+#set_player {
+    margin-left:.75em;
+}
 @media (min-width: 480px) {
     .end-of-name {
         display: inline;

@@ -1,11 +1,21 @@
 class GamesController < ApplicationController
   before_action :authenticate_user!
   before_action :get_game, only: [:show]
-  before_action :get_players, only: [:new]
-
+  before_action :get_players, only: [:new, :newplus]
 
   def new
     @game = Game.new
+  end
+  
+  def newplus
+    puts '++++++++++++++++++++++++++++++++++++++++++++='
+    @game = Game.new
+  end
+
+  def createplus
+    puts '--------------+++++++++++++-------------------'
+    #puts "params[:game]=#{params[:game]}"
+    #puts "params[:hand_player]=#{params[:hand_player]}"
   end
 
   def create
@@ -22,10 +32,13 @@ class GamesController < ApplicationController
   end
 
   private
-  def game_params
+  def old_params
     # if params[:game].present?
       params.fetch(:game, {}).permit(:trump_type_id, :status_id) #, players_attributes: [:id, :name, :_destroy])
     # end
+  end
+  def game_params
+    params.fetch(:game,{}).permit(:trump_type_id, :status_id, hand_player: [:game_id, :player_id])
   end
   def get_game
     @game = Game.find(params[:id])

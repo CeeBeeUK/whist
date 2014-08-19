@@ -4,4 +4,6 @@ class HandPlayer < ActiveRecord::Base
 
   belongs_to :hand
   belongs_to :player
+
+  acts_as_list scope: :hand
 end

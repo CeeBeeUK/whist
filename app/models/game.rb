@@ -11,7 +11,6 @@ class Game < ActiveRecord::Base
 
   after_initialize :init
 
-
   def init
     self.status_id  ||= 1           #will set the default value only if it's nil
     self.next_round ||= 1
