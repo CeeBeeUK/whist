@@ -19,7 +19,7 @@ describe Hand do
 		expect(new_hand.sequence).to eql(1)
 	end
 	it 'should have a dealer' do
-		expect(new_hand.dealer).to eql(1)
+		expect(new_hand.dealer_id).to eql(1)
 	end
 	it 'should have a status of unstarted upon creation' do
 		expect(new_hand.status_id).to eql(1)

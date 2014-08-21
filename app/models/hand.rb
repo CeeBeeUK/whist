@@ -6,6 +6,8 @@ class Hand < ActiveRecord::Base
   belongs_to :suit
   belongs_to :game
   belongs_to :status
+  belongs_to :dealer, :class_name=>'Player', :foreign_key=>"dealer_id"
+
   has_many :hand_players
 
   after_initialize :init

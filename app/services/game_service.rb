@@ -40,9 +40,18 @@ class GameService
       end
       @game.save!
       @game.hands.each do |h|
-        h.dealer=1 # TODO get next player
         h.hand_players << HandPlayer.new( player_id: @player.id, game_id: @game.id )
       end
+    end
+    # loop through players and set hand dealer
+    c = @game.player_list.size
+    @game.hands.each do |h|
+      dealer = h.sequence.modulo(c)
+      if dealer == 0 
+        dealer = c
+      end
+      # puts "Set Hand-#{h.id} dealer to be #{@game.player_list[dealer-1].id} where dealer=#{dealer}"
+      h.dealer_id = @game.player_list[dealer-1].id
     end
     @game
   end

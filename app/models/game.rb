@@ -16,7 +16,7 @@ class Game < ActiveRecord::Base
     self.next_round ||= 1
   end
   def player_list
-    Player.where(:id => players.select('DISTINCT(players.id)'))
+    self.players.distinct
   end
   def self.setup
     where('status_id=?',1)
