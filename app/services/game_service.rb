@@ -1,5 +1,15 @@
 class GameService
-  def start_game(trump_type)
+  
+    # &#x1F0A1; = Ace of spades
+    # &spades;
+    # http://en.wikipedia.org/wiki/Playing_Cards_(Unicode_block) 
+
+  def start_game_plus(trump_type, player_ids)
+    # puts '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
+    # puts "trump_type=#{trump_type}"
+    # puts "player_ids=#{player_ids}"
+    # puts '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
+
     @game = Game.new(trump_type_id: trump_type, status_id: 1)
     @trump_sequence = (2..5).to_a.sort{ rand() - 0.5 }[0..4]
     x = 0;
@@ -17,28 +27,23 @@ class GameService
       end
       @i+=1
     end
-    # &#x1F0A1; = Ace of spades
-    # &spades;
-    # http://en.wikipedia.org/wiki/Playing_Cards_(Unicode_block) 
-    @game
-  end
-
-  def add_player(game, player)
-    if game.player_list.size==7
-      raise 'Too many players'
-    end
-    @player = Player.find_by(id: player)
-    if @player.nil?
-      @player = Player.find_by(name: player)
+    (player_ids).each do |sequence,player|
+      @player = Player.find_by(id: player)
       if @player.nil?
-        @player = Player.create(name: player)
+        @player = Player.find_by(name: player)
+        if @player.nil?
+          @player = Player.create(name: player)
+        end
+      end
+      if @game.players.include? @player || @player.nil?
+        raise 'Player already in game'
+      end
+      @game.save!
+      @game.hands.each do |h|
+        h.dealer=1 # TODO get next player
+        h.hand_players << HandPlayer.new( player_id: @player.id, game_id: @game.id )
       end
     end
-    if game.players.include? @player || @player.nil?
-      raise 'Player already in game'
-    end
-    game.hands.each do |h|
-      h.hand_players << HandPlayer.new( player_id: @player.id, game_id: game.id )
-    end
+    @game
   end
 end

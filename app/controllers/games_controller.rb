@@ -1,32 +1,30 @@
 class GamesController < ApplicationController
   before_action :authenticate_user!
   before_action :get_game, only: [:show]
-  before_action :get_players, only: [:new, :newplus]
+  before_action :get_players, only: [:new, :newplus, :createplus]
 
   def new
     @game = Game.new
   end
-  
-  def newplus
-    puts '++++++++++++++++++++++++++++++++++++++++++++='
-    @game = Game.new
-  end
-
-  def createplus
-    puts '--------------+++++++++++++-------------------'
-    #puts "params[:game]=#{params[:game]}"
-    #puts "params[:hand_player]=#{params[:hand_player]}"
-  end
 
   def create
     @service = GameService.new
-    @game = @service.start_game(game_params['trump_type_id'])
-    if @game.save
-      redirect_to({controller: 'hand_players', action: 'new', id: @game.id})
-    else
+    begin
+      if params['hand_player']['player_id'].blank?
+        raise 'Please select 2-7 players'
+      end
+      @game = @service.start_game_plus(params['game']['trump_type_id'], params['hand_player']['player_id'])
+      if @game.save
+        redirect_to game_path(@game)
+      else 
+        render :new
+      end 
+    rescue => e
+      # @game.errors[:base] << e.message
       render :new
     end
   end
+
 
   def show
   end

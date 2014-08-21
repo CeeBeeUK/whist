@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :hand do
     no_of_cards 1
     suit_id 2
+    dealer 1
 	add_attribute :sequence, 1
   end
 end

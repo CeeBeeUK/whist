@@ -6,10 +6,9 @@ class Hand < ActiveRecord::Base
   belongs_to :suit
   belongs_to :game
   belongs_to :status
-  has_many :hand_players, -> {order("position ASC")}
+  has_many :hand_players
 
   after_initialize :init
-
 
   def init
     self.status_id ||= 1

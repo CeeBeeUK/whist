@@ -7,40 +7,6 @@ describe Game do
     expect(game).to be_valid
   end
 
-	it 'should raise an error if more than 7 players are added' do
-    @service = GameService.new
-    game = @service.start_game(1)
-    game.save
-    @service.add_player(game,'test player1')
-    @service.add_player(game,'test player 2')
-    @service.add_player(game,'test player 3')
-    @service.add_player(game,'test player 4')
-    @service.add_player(game,'test player 5')
-    @service.add_player(game,'test player 6')
-    @service.add_player(game,'test player 7')
-    expect{@service.add_player(game,'test player 8')}.to raise_error('Too many players')
-  end
-
-  it 'should raise an error if the same player is added twice' do
-    @service = GameService.new
-    game = @service.start_game(1)
-    game.save
-    @service.add_player(game,'test player 1')
-    expect{@service.add_player(game,'test player 1')}.to raise_error('Player already in game')
-    # result = @service.add_player(game,'test player 1')
-    # expect(result).to eql(false)
-  end
-
-  it 'should let users add players' do
-    @service = GameService.new
-    game = @service.start_game(1)
-    game.save
-    expect(game.player_list.size).to eql(0)
-    @service.add_player(game,'test player')
-    expect(game.player_list.size).to eql(1)
-    @service.add_player(game,'test player 2')
-    expect(game.player_list.size).to eql(2)
-  end
 
   it 'should have a status indicator for setup,  in progress and complete' do
     expect(game.status_id).to eql(1)
@@ -49,13 +15,14 @@ describe Game do
 
   it 'should have 13 hands once saved' do
     @gs = GameService.new
-    game = @gs.start_game(1)
+    @player_ids={"0"=>"1", "1"=>"3"}
+    game = @gs.start_game_plus(1, @player_ids)
     expect(game.hands.size).to eql(13)
   end
 
   it 'should have hands that follow the sequence 7 - 1 - 7' do
     @gs = GameService.new
-    game = @gs.start_game(1)
+    game = @gs.start_game_plus(1,{"0"=>"1", "1"=>"3"})
     expect(game.hands[0].no_of_cards).to eql(7)
     expect(game.hands[1].no_of_cards).to eql(6)
     expect(game.hands[2].no_of_cards).to eql(5)
@@ -78,12 +45,12 @@ describe Game do
   
   it 'should expose the next round to start'do
     @gs = GameService.new
-    game = @gs.start_game(1)
+    game = @gs.start_game_plus(1,{"0"=>"1", "1"=>"3"})
     expect(game.next_round).to eql(1)
   end
   it 'should have hands that run in sequence' do
     @gs = GameService.new
-    game = @gs.start_game(1)
+    game = @gs.start_game_plus(1,{"0"=>"1", "1"=>"3"})
     expect(game.hands[0].sequence).to eql(1)
     expect(game.hands[1].sequence).to eql(2)
     expect(game.hands[2].sequence).to eql(3)
@@ -102,7 +69,7 @@ describe Game do
     describe 'winner' do
       it 'should have first hand as random and all others as "To be chosen""' do
         @g =GameService.new
-        game = @g.start_game(2)
+        game = @g.start_game_plus(2,{"0"=>"1", "1"=>"3"})
         expect(game.hands[0].suit_id).to be > 1
         expect((game.hands[1]).suit.name).to eql('To be chosen')
         expect(game.hands[1].suit_id).to eql(1)
@@ -122,7 +89,7 @@ describe Game do
     describe 'Random' do
       it 'should have all hands as random' do
         @g =GameService.new
-        game = @g.start_game(1)
+        game = @g.start_game_plus(1,{"0"=>"1", "1"=>"3"})
         expect(game.hands[0].suit_id).to be > 1
         expect(game.hands[1].suit_id).to be > 1
         expect(game.hands[2].suit_id).to be > 1
