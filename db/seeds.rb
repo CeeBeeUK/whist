@@ -17,7 +17,7 @@ ActiveRecord::Base.connection.execute("TRUNCATE TABLE hand_players RESTART IDENT
 puts 'Create'
 puts '-Suits'
 Suit.create([
-	{name: 'To be chosen',text:'tbc'}, 
+	{name:'To be chosen',text:'tbc'}, 
 	{name:'Spades', text:'&spades;'}, 
 	{name:'Hearts', text:'&hearts;'}, 
 	{name:'Clubs', text:'&clubs;'}, 

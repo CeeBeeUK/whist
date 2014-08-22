@@ -52,6 +52,7 @@ class GameService
       end
       # puts "Set Hand-#{h.id} dealer to be #{@game.player_list[dealer-1].id} where dealer=#{dealer}"
       h.dealer_id = @game.player_list[dealer-1].id
+      h.save
     end
     @game
   end
