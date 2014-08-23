@@ -1,11 +1,12 @@
-== WHIST
+WHIST
+=====
 
 Test project to gain ruby experience... and a little bit of bootstrap
 
-== Travis CI
+# Travis CI
 [![Build Status](https://travis-ci.org/CeeBeeUK/whist.svg?branch=master)
 
-== Requirements
+# Requirements
 
 Designed with 
  * Ruby 2.0.0p481
