@@ -1,13 +1,13 @@
-[![Stories in Ready](https://badge.waffle.io/ceebeeuk/whist.png?label=ready&title=Ready)](https://waffle.io/ceebeeuk/whist)
+
 WHIST
 =====
 
 Test project to gain ruby experience... and a little bit of bootstrap
 
-# Travis CI
+# Badges
 
-[![Build Status](https://travis-ci.org/CeeBeeUK/whist.svg?branch=master)](https://travis-ci.org/CeeBeeUK/whist.svg?branch=master)
-
+Travis: [![Build Status](https://travis-ci.org/CeeBeeUK/whist.svg?branch=master)](https://travis-ci.org/CeeBeeUK/whist.svg?branch=master)
+Waffle.io ready [![Stories in Ready](https://badge.waffle.io/ceebeeuk/whist.png?label=ready&title=Ready)](https://waffle.io/ceebeeuk/whist)
 # Requirements
 
 Designed with 
