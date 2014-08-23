@@ -2,6 +2,9 @@
 
 Test project to gain ruby experience... and a little bit of bootstrap
 
+== Travis CI
+[![Build Status](https://travis-ci.org/CeeBeeUK/whist.svg?branch=master)
+
 == Requirements
 
 Designed with 
