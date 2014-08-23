@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/ceebeeuk/whist.png?label=ready&title=Ready)](https://waffle.io/ceebeeuk/whist)
 WHIST
 =====
 
