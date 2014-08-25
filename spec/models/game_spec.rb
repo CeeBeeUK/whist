@@ -2,11 +2,10 @@ require 'spec_helper'
 
 describe Game do
 	let(:game) {build(:game)}
-
+  suits_seed
   it 'should pass factory build' do
     expect(game).to be_valid
   end
-
 
   it 'should have a status indicator for setup,  in progress and complete' do
     expect(game.status_id).to eql(1)
@@ -71,19 +70,18 @@ describe Game do
         @g =GameService.new
         game = @g.start_game_plus(2,{"0"=>"1", "1"=>"3"})
         expect(game.hands[0].suit_id).to be > 1
-        expect((game.hands[1]).suit.name).to eql('To be chosen')
-        expect(game.hands[1].suit_id).to eql(1)
-        expect(game.hands[2].suit_id).to eql(1)
-        expect(game.hands[3].suit_id).to eql(1)
-        expect(game.hands[4].suit_id).to eql(1)
-        expect(game.hands[5].suit_id).to eql(1)
-        expect(game.hands[6].suit_id).to eql(1)
-        expect(game.hands[7].suit_id).to eql(1)
-        expect(game.hands[8].suit_id).to eql(1)
-        expect(game.hands[9].suit_id).to eql(1)
-        expect(game.hands[10].suit_id).to eql(1)
-        expect(game.hands[11].suit_id).to eql(1)
-        expect(game.hands[12].suit_id).to eql(1)
+        expect(game.hands[1].suit.name).to eql(Suit.TBC)
+        expect(game.hands[2].suit.name).to eql(Suit.TBC)
+        expect(game.hands[3].suit.name).to eql(Suit.TBC)
+        expect(game.hands[4].suit.name).to eql(Suit.TBC)
+        expect(game.hands[5].suit.name).to eql(Suit.TBC)
+        expect(game.hands[6].suit.name).to eql(Suit.TBC)
+        expect(game.hands[7].suit.name).to eql(Suit.TBC)
+        expect(game.hands[8].suit.name).to eql(Suit.TBC)
+        expect(game.hands[9].suit.name).to eql(Suit.TBC)
+        expect(game.hands[10].suit.name).to eql(Suit.TBC)
+        expect(game.hands[11].suit.name).to eql(Suit.TBC)
+        expect(game.hands[12].suit.name).to eql(Suit.TBC)
       end
     end
     describe 'Random' do

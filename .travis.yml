@@ -13,7 +13,7 @@ script:
   - bundle exec rake db:create
   - bundle exec rake db:migrate
   - bundle exec rake db:seed
-#  - bundle exec rake spec
+  - bundle exec rake spec
 #notifications:
 #  hipchat:
 #    rooms:
