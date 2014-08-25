@@ -1,3 +1,6 @@
+<% content_for :bcrumb do %>
+        <li class="active">Game <%= @game.id %></li>
+<% end %>
 <h2><%= @game.trump_type.name %> game, round <%= @game.next_round %> of <%= @game.hands.size %></h2>
 
 <table class="table">

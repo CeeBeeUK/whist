@@ -26,9 +26,15 @@ html, body {
 .header-normal a:hover {
     color:#ffffff;
 }
+#breadcrumb ol {
+    margin-bottom:0px;
+}
 #content {
     min-height:100%;
     margin-bottom: 3em;
+}
+#content h2 {
+    margin-top:0;
 }
 #footer {
     left:0;

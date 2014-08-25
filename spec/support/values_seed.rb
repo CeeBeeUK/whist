@@ -11,5 +11,4 @@ def values_seed
 	let!(:unstarted) { create(:status, name: Status.UNSTARTED)}
 	let!(:inprogress) { create(:status, name: Status.IN_PROGRESS)}
 	let!(:complete) { create(:status, name: Status.COMPLETE)}
-
 end
