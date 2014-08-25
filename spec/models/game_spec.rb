@@ -2,14 +2,14 @@ require 'spec_helper'
 
 describe Game do
 	let(:game) {build(:game)}
-  suits_seed
+  values_seed
   it 'should pass factory build' do
     expect(game).to be_valid
   end
 
   it 'should have a status indicator for setup,  in progress and complete' do
     expect(game.status_id).to eql(1)
-    expect(game.status.name).to eql('Unstarted')
+    expect(game.status.name).to eql(Status.UNSTARTED)
   end
 
   it 'should have 13 hands once saved' do
@@ -39,7 +39,7 @@ describe Game do
 
   it 'should have a trump type' do
     expect(game.trump_type_id).to eql(1)
-    expect(game.trump_type.name).to eql('Random')
+    expect(game.trump_type.name).to eql(TrumpType.WINNER)
   end
   
   it 'should expose the next round to start'do

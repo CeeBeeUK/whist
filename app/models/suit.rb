@@ -4,10 +4,6 @@ class Suit < ActiveRecord::Base
 
 	has_many :hands
 
-  def self.find_by_suit(suit)
-    Progress.find_by_name(suit)
-  end
-
   def self.tbc
     find_by_suit(self.TBC)
   end
@@ -24,18 +20,26 @@ class Suit < ActiveRecord::Base
     find_by_suit(self.DIAMONDS)
   end
 
+  def self.find_by_suit(suit)
+    Suit.find_by_name(suit)
+  end
+
   def self.TBC
     'To be chosen'
   end 
-def self.SPADES
+
+  def self.SPADES
     'Spades'
   end  
+  
   def self.HEARTS
     'Hearts'
   end
+  
   def self.CLUBS
     'Clubs'
   end
+  
   def self.DIAMONDS
     'Diamonds'
   end

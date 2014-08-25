@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Hand do
 	let(:new_hand) {build(:hand)}
+	values_seed
 
 	it 'should pass factory build' do
 		expect(new_hand).to be_valid
@@ -12,8 +13,9 @@ describe Hand do
 		expect(new_hand).to be_valid
 	end
 	it 'should tell me the current trump suit' do
+		new_hand.suit = Suit.find_by(name:Suit.SPADES)
 		expect(new_hand.suit_id).to eql(2)
-		expect(new_hand.suit.name).to eql('Spades')
+		expect(new_hand.suit.name).to eql(Suit.SPADES)
 	end
 	it 'should have a sequence within the game' do
 		expect(new_hand.sequence).to eql(1)

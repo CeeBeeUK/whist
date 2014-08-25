@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Suit do
 	let(:suit) {build(:suit)}
-	suits_seed
+	values_seed
 
 	it 'should pass factory build' do
 		expect(suit).to be_valid
