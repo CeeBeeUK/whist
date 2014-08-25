@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe GameService do
+	values_seed
 	it 'should create hands with sequential dealers' do
 
 		player1 = Player.create(name: 'PlayerOne')
