@@ -15,11 +15,11 @@
     <tbody>
     <% @game.hands.each do |h| %>
         <tr>
-            <td class="suits center-align">
+            <td class="center-align">
                 <%= h.no_of_cards %>
                 <span class="suits <%= h.suit.name %>" alt="Trumps = <%= h.suit.name %>"><%= raw(h.suit.text) %></span>
             <% if @game.next_round==h.sequence %>
-                <%= link_to 'Start round', hand_path(h), :class=>'btn btn-xs btn-success' %>
+                <%= link_to 'Start round', {controller: 'hands', action: 'show', g_id:@game.id, seq: h.sequence}, :class=>'btn btn-xs btn-success' %>
             <% else %>
                 <%= h.dealer.name %>
             <% end %>

@@ -13,7 +13,7 @@ class GamesController < ApplicationController
       if params['hand_player']['player_id'].blank?
         raise 'Please select 2-7 players'
       end
-      @game = @service.start_game_plus(params['game']['trump_type_id'], params['hand_player']['player_id'])
+      @game = @service.start_game(params['game']['trump_type_id'], params['hand_player']['player_id'])
       if @game.save
         redirect_to game_path(@game)
       else 

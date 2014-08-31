@@ -54,6 +54,10 @@ td.center-align {
 }
 .suits {
     font-size:xx-large;
+    vertical-align: middle;
+}
+h2 .suits {
+    vertical-align: inherit;
 }
 span.suits.Hearts,
 span.suits.Diamonds {

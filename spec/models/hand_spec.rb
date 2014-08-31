@@ -24,7 +24,7 @@ describe Hand do
 		expect(new_hand.dealer_id).to eql(1)
 	end
 	it 'should have a status of unstarted upon creation' do
-		expect(new_hand.status_id).to eql(1)
+		expect(new_hand.status.name).to eql(Status.UNSTARTED)
 	end
 	it 'should have a status of inprogress while playing' do
 		
