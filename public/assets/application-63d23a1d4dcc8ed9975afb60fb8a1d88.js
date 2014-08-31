@@ -10780,7 +10780,6 @@ return jQuery;
     url = new ComponentUrl(url);
     rememberReferer();
     cacheCurrentPage();
-    reflectNewUrl(url);
     if (transitionCacheEnabled && (cachedPage = transitionCacheFor(url.absolute))) {
       fetchHistory(cachedPage);
       return fetchReplacement(url);
@@ -10822,8 +10821,11 @@ return jQuery;
     xhr.setRequestHeader('X-XHR-Referer', referer);
     xhr.onload = function() {
       var doc;
-      triggerEvent('page:receive');
+      triggerEvent('page:receive', {
+        url: url.absolute
+      });
       if (doc = processResponse()) {
+        reflectNewUrl(url);
         changePage.apply(null, extractTitleAndBody(doc));
         manuallyTriggerHashChangeForFirefox();
         reflectRedirectedUrl();
