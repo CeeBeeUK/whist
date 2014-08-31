@@ -7,6 +7,16 @@ describe Game do
     expect(game).to be_valid
   end
 
+  it 'should have a player list starting with the first dealer' do
+    player1 = Player.create(name: 'PlayerOne')
+    player2 = Player.create(name: 'PlayerTwo')
+    player3 = Player.create(name: 'PlayerThree')
+    player4 = Player.create(name: 'PlayerFour')
+    @gs = GameService.new
+    game = @gs.start_game(1,{"0"=>player2.id, "1"=>player3.id, "2"=>player4.id, "3"=>player1.id})
+    expect(game).to be_valid
+    expect(game.player_list[0].name).to eql('PlayerTwo')
+  end
   it 'should have a status indicator for setup,  in progress and complete' do
     expect(game.status_id).to eql(1)
     expect(game.status.name).to eql(Status.UNSTARTED)

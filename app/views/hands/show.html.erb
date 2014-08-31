@@ -2,9 +2,9 @@
         <li><a href="<%= game_path(@hand.game) %>">Game <%= @hand.game.id %></a></li>
         <li class="active">Round <%= @hand.sequence %></li>
 <% end %>
-<h2>Round <%= @hand.sequence %> - <span class="suits <%= @hand.suit.name %>" alt="Trumps = <%= @hand.suit.name %>"><%= raw(@hand.suit.text) unless @hand.suit.id==5 %></h2>
+<h2>Round <%= @hand.sequence %> - <span class="suits <%= @hand.suit.name %>" alt="Trumps = <%= @hand.suit.name %>"><%= raw(@hand.suit.text) unless @hand.suit.id==1 %></h2>
 <div><%= @hand.dealer.name %> should deal <%= @hand.no_of_cards %> cards, 
-<% if @hand.suit.id < 5 %>
+<% if @hand.suit.id >1 %>
 trumps are <%= @hand.suit.name.downcase %>.</span>
 <% else %>
 winner of last hand should pick trumps.

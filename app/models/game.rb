@@ -16,7 +16,12 @@ class Game < ActiveRecord::Base
     self.next_round ||= 1
   end
   def player_list
-    self.players.distinct
+    result = []
+    self.hands[self.players.distinct.size-1].hand_players.each { |x| result << x.player }
+
+    result
+
+    #self.players.distinct
   end
   def self.setup
     where('status_id=?',1)

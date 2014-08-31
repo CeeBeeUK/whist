@@ -26,6 +26,8 @@ describe GameService do
 	    expect(game.hands[11].dealer_id).to eql(player1.id)
 	    expect(game.hands[12].dealer_id).to eql(player2.id)
 	    expect(game.player_list.size).to eql(4)
+	    expect(game.hands[0].hand_players.size).to eql(4)
+	    expect(game.hands[0].hand_players[0].player_id).to eql(player3.id)
 	end
 	it 'should have hands that follow the sequence 7 - 1 - 7' do
 	    @gs = GameService.new

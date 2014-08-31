@@ -21,8 +21,10 @@ class GameService
       	if dealer == 0 
 			dealer = c
 		end
-      	# puts "dealer=#{dealer}"
-      	(player_ids.drop(dealer-1)+player_ids.take(dealer-1)).each do |sequence,player|
+    # puts "dealer=#{dealer}"
+    seq=0
+    (player_ids.drop(dealer)+player_ids.take(dealer)).each do |val,player|
+      #todo make sequence an increment
 			@player = Player.find_by(id: player)
 			if @player.nil?
 				@player = Player.find_by(name: player)
@@ -34,14 +36,15 @@ class GameService
 				raise 'Player already in game'
 			end
 			# puts "Adding Player #{@player.name} to hand #{@new_hand.sequence}"
-			@new_hand.hand_players << HandPlayer.new( player_id: @player.id, game_id: @game.id )
+			@new_hand.hand_players << HandPlayer.new( player_id: @player.id, game_id: @game.id, sequence: seq )
+      seq+=1
+  	end
+  	# Get the dealer item from the player_id hash
+  	# and in the 0th array, get the 2nd entry (0,1)
+  	@new_hand.dealer_id = player_ids.drop(dealer-1).take(1)[0][1]
+  	# puts "@new_hand.dealer_id=#{@new_hand.dealer_id}"
 
-      	end
-      	# Get the dealer item from the player_id hash
-      	# and in the 0th array, get the 2nd entry (0,1)
-      	@new_hand.dealer_id = player_ids.drop(dealer-1).take(1)[0][1]
-      	# puts "@new_hand.dealer_id=#{@new_hand.dealer_id}"
-      	#set up for next loop through
+  	#set up for next loop through
 		@game.hands << @new_hand
 		if @game.trump_type_id==2
 			@this_suit = Suit.find(1)

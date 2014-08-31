@@ -24,8 +24,12 @@
                 <%= h.dealer.name %>
             <% end %>
             </td>
-          <% @game.player_list.each do  %>
+          <% @game.player_list.each do |p| %>
+            <% if p.id==h.dealer_id %>
+            <td style="border:blue 1px solid">&nbsp;</td>
+            <% else %>
             <td>&nbsp;</td>
+            <% end %>
           <% end %>
         </tr>
     <% end %>
