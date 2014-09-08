@@ -9,6 +9,7 @@ Whist::Application.routes.draw do
   # resources :hands
   get 'hands/finish/:id' => 'hands#finish', as: 'finish_hand'
   get 'game/:g_id/round/:seq' => 'hands#show'
+  get 'games/list/:qstatus' => 'games#by_status', as: 'game_list'
   # get 'games/orig_new' => 'games#setup'
   # post 'games/create' => 'games#start'
   #get '/', to: 'root#index', as: :root

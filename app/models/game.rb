@@ -18,10 +18,10 @@ class Game < ActiveRecord::Base
   def player_list
     result = []
     self.hands[self.players.distinct.size-1].hand_players.each { |x| result << x.player }
-
     result
-
-    #self.players.distinct
+  end
+  def self.by_status(status)
+    by_status_internal(status)
   end
   def self.setup
     where('status_id=?',1)
@@ -38,5 +38,9 @@ class Game < ActiveRecord::Base
       result = true
     end
     result
+  end
+  private
+  def self.by_status_internal(status)
+    joins(:status).where(statuses: {name: status})
   end
 end

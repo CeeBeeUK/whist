@@ -29,12 +29,13 @@ class GamesController < ApplicationController
   def show
   end
 
-  private
-  def old_params
-    # if params[:game].present?
-      params.fetch(:game, {}).permit(:trump_type_id, :status_id) #, players_attributes: [:id, :name, :_destroy])
-    # end
+  def by_status
+    status = params['qstatus']
+    @games = Game.by_status(params[:qstatus].humanize)
   end
+
+
+  private
   def game_params
     params.fetch(:game,{}).permit(:trump_type_id, :status_id, hand_player: [:game_id, :player_id])
   end

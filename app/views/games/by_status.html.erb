@@ -1,0 +1,9 @@
+<% content_for :bcrumb do %>
+        <li class="active"><%= params['qstatus'].humanize %> games</li>
+<% end %>
+<h2><%= params['qstatus'].humanize %> (<%= @games.size %>)</h2>
+<ul class="nav nav-pills nav-stacked">
+<% @games.each do |g| %>
+	<li><%= link_to "Game #{g.id}", game_path(g) %></li>
+<% end %>
+</ul>

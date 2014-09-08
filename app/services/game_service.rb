@@ -54,6 +54,7 @@ class GameService
 		end
 		@i+=1
     end
+    @game.status = Status.in_progress
     @game.save
     @game
   end

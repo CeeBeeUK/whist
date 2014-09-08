@@ -1,4 +1,5 @@
 <% content_for :bcrumb do %>
+        <li><%= link_to "#{@game.status.name.humanize} games", game_list_path(qstatus: 'in_progress')  %></li>
         <li class="active">Game <%= @game.id %></li>
 <% end %>
 <h2><%= @game.trump_type.name %> game, round <%= @game.next_round %> of <%= @game.hands.size %></h2>
