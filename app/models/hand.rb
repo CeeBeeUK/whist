@@ -15,4 +15,11 @@ class Hand < ActiveRecord::Base
   def init
     self.status_id ||= 1
   end
+
+  def bid_total 
+    hand_players.sum(:bid)
+  end
+  def bid_count
+    hand_players.where('bid IS NOT null').size
+  end
 end

@@ -57,4 +57,14 @@ class GameService
     @game.save
     @game
   end
+
+  def set_bid(hand, hand_player, bid)
+    if (hand.hand_players.size-1) == hand_player.sequence
+      if bid + hand.bid_total== hand.no_of_cards
+        raise 'Dealer bid cannot equal number of cards in hand'
+      end 
+    end
+    hand.update(status_id: Status.in_progress.id)
+    hand_player.update(bid: bid)
+  end
 end
