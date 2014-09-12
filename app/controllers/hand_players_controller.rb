@@ -9,9 +9,7 @@ class HandPlayersController < ApplicationController
   def create
     @service = GameService.new
     begin
-      if params["hand_player"]['player_id'].blank?
-        raise 'Please select 2-7 players'
-      end
+      raise 'Please select 2-7 players' if params["hand_player"]['player_id'].blank?
       @game = Game.find(hp_params['game_id'])
       params["hand_player"]['player_id'].each do |p|
         @service.add_player(@game,p)
