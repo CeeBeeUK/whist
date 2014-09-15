@@ -9,10 +9,10 @@ class GameService
     @trump_sequence = get_random_trump_sequence
     x = 0;
     @i = 1;
-
-    @this_suit = get_trump(trump_type, x, true)
-
+    initial = true
     card_sequence.each do |card|
+      @this_suit = get_trump(trump_type, x, initial)
+      initial = false
       # puts '---------'
       # puts "hand #{@i}"
       @new_hand = Hand.new(no_of_cards: card, suit: @this_suit, sequence:@i)
@@ -33,7 +33,6 @@ class GameService
     	# puts "@new_hand.dealer_id=#{@new_hand.dealer_id}"
   		@game.hands << @new_hand
       #set up for next loop through
-      @this_suit = get_trump(trump_type, x, false)
   		@i+=1
     end
     @game.update(status: Status.in_progress)
@@ -77,7 +76,7 @@ private
     dealer = p_count if dealer == 0 
     dealer
   end
-  def get_trump(trump_type, round, initial=false)
+  def get_trump(trump_type, round, initial)
     if @game.trump_type_id==2 && !initial
       Suit.find(1)
     else
