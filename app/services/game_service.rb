@@ -18,9 +18,8 @@ class GameService
       	@new_hand = Hand.new(no_of_cards: card, suit: @this_suit, sequence:@i)
 
       	dealer = @new_hand.sequence.modulo(c)
-      	if dealer == 0 
-			dealer = c
-		end
+      	dealer = c if dealer == 0 
+			
     # puts "dealer=#{dealer}"
     seq=0
     (player_ids.drop(dealer)+player_ids.take(dealer)).each do |val,player|
@@ -68,4 +67,6 @@ class GameService
     hand.update(status_id: Status.in_progress.id)
     hand_player.update(bid: bid)
   end
+
+  private
 end
