@@ -12,7 +12,7 @@ class GameService
 
     @this_suit = get_trump(trump_type, x, true)
 
-    [7,6,5,4,3,2,1, 2, 3, 4, 5,6,7].each do |card|
+    card_sequence.each do |card|
       # puts '---------'
       # puts "hand #{@i}"
       @new_hand = Hand.new(no_of_cards: card, suit: @this_suit, sequence:@i)
@@ -65,6 +65,9 @@ private
       raise 'Player already in game'
     end
     @player
+  end
+  def card_sequence
+    [7,6,5,4,3,2,1,2,3,4,5,6,7]
   end
   def get_random_trump_sequence
     (2..5).to_a.sort{ rand() - 0.5 }[0..4]
