@@ -8,6 +8,10 @@ describe Suit do
 		expect(suit).to be_valid
 	end
 
+	it 'should return text from find_by_suit' do
+		expect(Suit.find_by_suit('Hearts').text).to eql('&hearts;')
+	end
+
 	describe 'validations' do
 		it 'should fail with no name' do
 			suit.name=nil
