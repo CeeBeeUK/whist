@@ -7,37 +7,28 @@ class GameService
   def start_game(trump_type, player_ids)
     @game = Game.new(trump_type_id: trump_type, status_id: 1)
     @trump_sequence = get_random_trump_sequence
-    x = 0;
-    @i = 1;
-    initial = true
+    @round = 0;
+    @hand_seq = 1;
+    @initial = true
+    
     card_sequence.each do |card|
-      @this_suit = get_trump(trump_type, x, initial)
-      initial = false
-      # puts '---------'
-      # puts "hand #{@i}"
-      @new_hand = Hand.new(no_of_cards: card, suit: @this_suit, sequence:@i)
-      dealer = get_dealer(@i, player_ids.size)
-      # puts "dealer=#{dealer}"
+      @dealer = get_dealer(player_ids)
+      @new_hand = Hand.new(
+          no_of_cards: card, 
+          suit: get_trump(trump_type), 
+          sequence:@hand_seq,
+          dealer_id: get_dealer_from_players(player_ids))
       seq=0
-      get_player_sequence(player_ids, dealer).each do |val,player|
-        #todo make sequence an increment
-      	@player = find_player(player)
-
-      	# puts "Adding Player #{@player.name} to hand #{@new_hand.sequence}"
-      	@new_hand.hand_players << HandPlayer.new( player_id: @player.id, game_id: @game.id, sequence: seq )
+      get_player_sequence(player_ids).each do |ignore,player|
+      	p_id = find_player(player).id
+      	@new_hand.hand_players << HandPlayer.new( player_id: p_id, game_id: @game.id, sequence: seq )
         seq+=1
       end
-    	# Get the dealer item from the player_id hash
-    	# and in the 0th array, get the 2nd entry (0,1)
-    	@new_hand.dealer_id = get_dealer_from_players(player_ids, dealer)
-    	# puts "@new_hand.dealer_id=#{@new_hand.dealer_id}"
   		@game.hands << @new_hand
       #set up for next loop through
-  		@i+=1
+  		@hand_seq+=1
     end
     @game.update(status: Status.in_progress)
-    # @game.status = Status.in_progress
-    # @game.save
     @game
   end
 
@@ -71,23 +62,24 @@ private
   def get_random_trump_sequence
     (2..5).to_a.sort{ rand() - 0.5 }[0..4]
   end
-  def get_dealer(sequence, p_count)
-    dealer = sequence.modulo(p_count)
-    dealer = p_count if dealer == 0 
+  def get_dealer(players)
+    dealer = @hand_seq.modulo(players.size)
+    dealer = players.size if dealer == 0 
     dealer
   end
-  def get_trump(trump_type, round, initial)
-    if @game.trump_type_id==2 && !initial
+  def get_trump(trump_type)
+    if @game.trump_type_id==2 && !@initial
       Suit.find(1)
     else
-      round = initial ? round : (round<=2 ? round+1 : 0)
-      Suit.find(@trump_sequence[round])
+      @round = @initial ? @round : (@round<=2 ? @round+1 : 0)
+      @initial=false
+      Suit.find(@trump_sequence[@round])
     end
   end
-  def get_player_sequence(player_ids, dealer)
-    (player_ids.drop(dealer)+player_ids.take(dealer))
+  def get_player_sequence(player_ids)
+    (player_ids.drop(@dealer)+player_ids.take(@dealer))
   end
-  def get_dealer_from_players(player_ids, dealer)
-    player_ids.drop(dealer-1).take(1)[0][1]
+  def get_dealer_from_players(player_ids)
+    player_ids.drop(@dealer-1).take(1)[0][1]
   end
 end
