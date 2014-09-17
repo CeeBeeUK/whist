@@ -5,7 +5,7 @@ class GameService
     # http://en.wikipedia.org/wiki/Playing_Cards_(Unicode_block) 
 
   def start_game(trump_type, player_ids)
-    raise 'Player already in game' if player_ids.map(&:last).uniq.size != player_ids.size
+    raise 'Player already in game' if are_players_unique(player_ids)
     @game = Game.new(trump_type_id: trump_type, status_id: 1)
     @trump_sequence = get_random_trump_sequence
     @round = 0;
@@ -44,6 +44,9 @@ class GameService
   end
 
 private
+  def are_players_unique(player_ids)
+    player_ids.map(&:last).uniq.size != player_ids.size
+  end
   def find_player(player)
     @player = Player.find_by(id: player)
     if @player.nil?
