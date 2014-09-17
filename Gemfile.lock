@@ -226,5 +226,6 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   sdoc
   select2-rails
+  simplecov
   turbolinks
   uglifier (>= 1.3.0)

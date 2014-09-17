@@ -5,6 +5,7 @@ class GameService
     # http://en.wikipedia.org/wiki/Playing_Cards_(Unicode_block) 
 
   def start_game(trump_type, player_ids)
+    raise 'Player already in game' if player_ids.map(&:last).uniq.size != player_ids.size
     @game = Game.new(trump_type_id: trump_type, status_id: 1)
     @trump_sequence = get_random_trump_sequence
     @round = 0;
@@ -50,9 +51,6 @@ private
       if @player.nil?
         @player = Player.create(name: player)
       end
-    end
-    if @game.players.include? @player || @player.nil?
-      raise 'Player already in game'
     end
     @player
   end

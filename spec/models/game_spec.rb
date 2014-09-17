@@ -54,4 +54,17 @@ describe Game do
       expect(game).to respond_to(:players)
     end
   end
+  describe 'criteria' do
+    it 'should respond to by_status' do
+      Game.delete_all
+      @gs = GameService.new
+      game = @gs.start_game(1,{"0"=>"1", "1"=>"3"})
+      expect(Game.by_status(Status.UNSTARTED).size).to eql(0)
+      expect(Game.by_status(Status.IN_PROGRESS).size).to eql(1)
+      expect(Game.by_status(Status.COMPLETE).size).to eql(0)
+      expect(Game.setup.size).to eql(0)
+      expect(Game.in_progress.size).to eql(1)
+      expect(Game.complete.size).to eql(0)
+    end
+  end
 end

@@ -39,6 +39,7 @@ gem 'jbuilder', '~> 1.2'
 
 # Code climate CI integration
 gem "codeclimate-test-reporter", group: :test, require: nil
+gem 'simplecov', :require => false, :group => :test
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

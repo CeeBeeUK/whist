@@ -63,6 +63,10 @@ describe GameService do
 		expect(game.hands[11].sequence).to eql(12)
 		expect(game.hands[12].sequence).to eql(13)
 	end
+	it 'should return an error if two identical players added' do
+		@gs = GameService.new
+		expect{ game = @gs.start_game(1, {"0"=>"1", "1"=>"1"})}.to raise_error('Player already in game')
+	end
 	describe 'type' do
 		describe 'winner' do
 			it 'should have first hand as random and all others as "To be chosen""' do

@@ -32,13 +32,6 @@ class Game < ActiveRecord::Base
   def self.complete
     where('status_id=?',3)
   end
-  def can_start()
-    result = false
-    if (2..7).include?(player_list.size)
-      result = true
-    end
-    result
-  end
   private
   def self.by_status_internal(status)
     joins(:status).where(statuses: {name: status})
