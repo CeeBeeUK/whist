@@ -67,6 +67,18 @@ describe GameService do
 		@gs = GameService.new
 		expect{ game = @gs.start_game(1, {"0"=>"1", "1"=>"1"})}.to raise_error('Player already in game')
 	end
+	it 'should add a pre existing player by name' do
+		player1 = Player.create(name: 'PlayerOne')
+		@gs = GameService.new
+		game = @gs.start_game(1, {"0"=>"#{player1.name}", "1"=>"John McLane"})
+	    expect(game.hands[1].hand_players[0].player.name).to eql('PlayerOne')
+	    expect(game.hands[1].hand_players[1].player.name).to eql('John McLane')
+	end
+	it 'should create a player if names sent' do
+		@gs = GameService.new
+		game = @gs.start_game(1, {"0"=>"1", "1"=>"John McLane"})
+	    expect(game.hands[1].hand_players[1].player.name).to eql('John McLane')
+	end
 	describe 'type' do
 		describe 'winner' do
 			it 'should have first hand as random and all others as "To be chosen""' do
