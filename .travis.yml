@@ -1,9 +1,6 @@
 language: ruby
 env:
-  matrix:
-  - CODECLIMATE_REPO_TOKEN=74fdf7c57926523ad6fbc063598933054941221d71ad94a42a17d2938e9c4850
-  global:
-    secure: dKHIxmGGgIMX1riuLqJ74L4ta/P1s+hrBusz4E8yP0/yxzd5X8Uzm/EiWlSjEz4+YWuCp/6Alh67Fnq3UAabdvrUifsNElVUYDUZhs18ZLEIy5YA8UA8BBq5aT+XSvtHekfTq6+H6LgcLjM8D3jp9DZNcemVN+8JZnwCy5pfSCU=
+- CODECLIMATE_REPO_TOKEN=74fdf7c57926523ad6fbc063598933054941221d71ad94a42a17d2938e9c4850
 rvm:
 - 2.0.0
 before_install:
@@ -18,3 +15,8 @@ script:
 - bundle exec rake spec
 deploy:
   provider: heroku
+  api_key:
+    secure: Xv+5TAsyDW6V3xYz38hultPDOjxmrKCBnsShmWTbJtwS9uuINcnsGUszajlsD3ijs9aYrGAWgROOLOV/GbT0fJ1GtGySQShD2Mmyx5+SHG99+k3h2YeqvqPmBz1NobisNaTQB1UsmofzcNvIxoNOEv4e8hW/k6nJdaaMGtrUy9Y=
+  app: bettingtrumps
+  on:
+    repo: CeeBeeUK/whist
