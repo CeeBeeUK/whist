@@ -1,25 +1,20 @@
 language: ruby
 env:
-  - CODECLIMATE_REPO_TOKEN=74fdf7c57926523ad6fbc063598933054941221d71ad94a42a17d2938e9c4850 
+  matrix:
+  - CODECLIMATE_REPO_TOKEN=74fdf7c57926523ad6fbc063598933054941221d71ad94a42a17d2938e9c4850
+  global:
+    secure: dKHIxmGGgIMX1riuLqJ74L4ta/P1s+hrBusz4E8yP0/yxzd5X8Uzm/EiWlSjEz4+YWuCp/6Alh67Fnq3UAabdvrUifsNElVUYDUZhs18ZLEIy5YA8UA8BBq5aT+XSvtHekfTq6+H6LgcLjM8D3jp9DZNcemVN+8JZnwCy5pfSCU=
 rvm:
-  - 2.0.0
+- 2.0.0
 before_install:
-  - sudo apt-get update -qq
+- sudo apt-get update -qq
 before_script:
-  - psql -c 'create role pq login createdb;' -U postgres
+- psql -c 'create role pq login createdb;' -U postgres
 addons:
   postgresql: 9.3
 script:
-  - bundle exec rake db:create
-  - bundle exec rake db:migrate
-  # - bundle exec rake db:seed
-  - bundle exec rake spec
-#notifications:
-#  hipchat:
-#    rooms:
-#      secure: <token_here>
-#    format: html
-#    template:
-#      - '%{message} (<a href="%{build_url}">details</a>/<a href="%{compare_url}">changes</a>) - build #%{build_number}, branch <a href="https://github.com/%{repository}/tree/%{branch}">%{branch}</a>; of %{repository}'
-addons:
-  postgresql: 9.3
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+- bundle exec rake spec
+deploy:
+  provider: heroku
