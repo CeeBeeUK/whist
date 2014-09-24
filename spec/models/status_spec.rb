@@ -8,6 +8,13 @@ describe Status do
 		expect(status).to be_valid
 	end
 
+	it 'should respond to name requests' do
+		expect(Status.complete).to be_valid
+		expect(Status.in_progress).to be_valid
+		expect(Status.unstarted).to be_valid
+		expect(Status.unstarted.name).to eql('Unstarted')
+	end
+
 	describe 'validations' do
 		it 'should fail with no name' do
 			status.name=nil

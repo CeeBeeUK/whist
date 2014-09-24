@@ -12,7 +12,16 @@ describe Suit do
 		expect(Suit.find_by_suit('Hearts').text).to eql('&hearts;')
 	end
 
-	describe 'validations' do
+	it 'should respond to name requests' do
+		expect(Suit.spades).to be_valid
+		expect(Suit.hearts).to be_valid
+		expect(Suit.clubs).to be_valid
+		expect(Suit.diamonds).to be_valid
+		expect(Suit.tbc).to be_valid
+		expect(Suit.tbc.text).to eql('tbc')
+	end
+
+ 	describe 'validations' do
 		it 'should fail with no name' do
 			suit.name=nil
 			expect(suit).to be_invalid

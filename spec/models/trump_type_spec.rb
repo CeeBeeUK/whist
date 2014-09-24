@@ -14,6 +14,11 @@ describe TrumpType do
 	it 'should return "Random" if started as 1' do
 		expect(TrumpType.find(2).name).to eql('Random')
 	end
+	it 'should respond to name requests' do
+		expect(TrumpType.winner).to be_valid
+		expect(TrumpType.random).to be_valid
+		expect(TrumpType.random.name).to eql('Random')
+	end
 	
 	describe 'associations' do
 	    it 'should have a name attribute' do
