@@ -2,7 +2,7 @@ development:
   adapter: postgresql
   encoding: unicode
   database: whist_dev
-  host: localhost
+  # host: localhost
   pool: 10
 
 
@@ -10,7 +10,7 @@ test:
   adapter: postgresql
   encoding: unicode
   database: whist_test
-  host: localhost
+  # host: localhost
   pool: 10
 
 production:
