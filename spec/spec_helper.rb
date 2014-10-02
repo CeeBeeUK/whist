@@ -53,4 +53,9 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
     DatabaseCleaner.strategy = :transaction
   end
+
+end
+
+class ActionController::TestCase
+  include Devise::TestHelpers
 end
