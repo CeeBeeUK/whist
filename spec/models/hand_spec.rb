@@ -23,6 +23,28 @@ describe Hand do
 	it 'should have a dealer' do
 		expect(new_hand.dealer_id).to eql(1)
 	end
+	it 'should tell me the next bid player' do
+		player1 = Player.create(name: 'PlayerOne')
+		player2 = Player.create(name: 'PlayerTwo')
+		player3 = Player.create(name: 'PlayerThree')
+		player4 = Player.create(name: 'PlayerFour')
+	    @gs = GameService.new
+	    game = @gs.start_game(1,{"0"=>player1.id, "1"=>player2.id, "2"=>player3.id, "3"=>player4.id})
+	    first = game.hands.first
+		expect(first.next_player.name).to eql('PlayerTwo')
+	    @gs.set_bid(first, first.hand_players[0] ,1)		
+		expect(first.next_player.name).to eql('PlayerThree')
+	end
+	it 'should tell me the next bid hand player' do
+		player1 = Player.create(name: 'PlayerOne')
+		player2 = Player.create(name: 'PlayerTwo')
+		player3 = Player.create(name: 'PlayerThree')
+		player4 = Player.create(name: 'PlayerFour')
+	    @gs = GameService.new
+	    game = @gs.start_game(1,{"0"=>player1.id, "1"=>player2.id, "2"=>player3.id, "3"=>player4.id})
+	    first_hand = game.hands.first
+		expect(first_hand.next_hand_player.player.name).to eql('PlayerTwo')
+	end
 	it 'should have a status of unstarted upon creation' do
 		expect(new_hand.status.name).to eql(Status.UNSTARTED)
 	end

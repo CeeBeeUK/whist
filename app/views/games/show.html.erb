@@ -25,13 +25,13 @@
                 <%= h.dealer.name %>
             <% end %>
             </td>
-          <% @game.player_list.each do |p| %>
-            <% if p.id==h.dealer_id %>
-            <td style="border:blue 1px solid">&nbsp;</td>
-            <% else %>
-            <td>&nbsp;</td>
-            <% end %>
-          <% end %>
+      <% @game.player_list.each do |p| %>
+            <td class="scores<%= ' dealer' if p.id==h.dealer_id %>">
+                <% if @game.next_round==h.sequence && p.id == h.next_player.id %>
+                    <a class="fa fa-plus-square-o fa-3x" href='#'></a>
+                <% end %>
+            </td>
+      <% end %>
         </tr>
     <% end %>
     </tbody>

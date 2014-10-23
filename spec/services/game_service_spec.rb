@@ -119,4 +119,19 @@ describe GameService do
 			end
 		end
 	end
+
+	it 'should allow me to set a bid' do
+		player1 = Player.create(name: 'PlayerOne')
+		player2 = Player.create(name: 'PlayerTwo')
+		player3 = Player.create(name: 'PlayerThree')
+		player4 = Player.create(name: 'PlayerFour')
+	    @gs = GameService.new
+	    game = @gs.start_game(1,{"0"=>player1.id, "1"=>player2.id, "2"=>player3.id, "3"=>player4.id})
+	    first_hand = game.hands.first
+	    first_player = first_hand.next_player
+		expect(first_player.name).to eql('PlayerTwo')
+	    @gs.set_bid(first_hand, first_hand.hand_players[0] ,1)		
+		expect(first_hand.next_player.name).to eql('PlayerThree')
+		expect(first_hand.hand_players[0].bid).to eql(1)
+	end
 end	

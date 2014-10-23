@@ -22,4 +22,10 @@ class Hand < ActiveRecord::Base
   def bid_count
     hand_players.where('bid IS NOT null').size
   end
+  def next_player
+    next_hand_player.player
+  end
+  def next_hand_player
+    hand_players.where('bid IS NULL').first
+  end
 end
