@@ -5,12 +5,15 @@
 <% end %>
 <h2><%= @game.trump_type.name %> game, round <%= @game.next_round %> of <%= @game.hands.size %></h2>
 
-<%= form_for :hand_player, url: { action: "createbid" } do |f| %>
+<%= form_for(:hand_player,:url=>{ action: "createbid" }, html: { method: 'post', class: 'form-horizontal'})  do |f| %>
 	<%= f.hidden_field :id %>
-	<h3><%= @hand_player.player.name %>'s bid</h3>
 	<div class="form-group">
-		<%= f.number_field :bid, {class:'small-number', min:0 ,max:@hand.no_of_cards, autofocus: true }  %>
+		<label for="" class="col-sm-2 control-label"><%= @hand_player.player.name %>'s bid</label>
+		<div class="col-sm-1">
+			<%= f.number_field :bid, {class:'small-number', min:0 ,max:@hand.no_of_cards, autofocus: true }  %>
+		</div>
+		<div class="col-sm-1">
+			<%= f.submit :class=>'btn btn-success', style: 'display: inline-block; vertical-align: middle;', :value=>'Enter bid' %>
+		</div>
 	</div>
-	<hr/>
-	<%= f.submit :class=>'btn btn-success', :value=>'save' %>
 <% end %>
