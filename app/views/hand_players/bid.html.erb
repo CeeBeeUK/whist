@@ -9,7 +9,7 @@
 	<%= f.hidden_field :id %>
 	<h3><%= @hand_player.player.name %>'s bid</h3>
 	<div class="form-group">
-		<%= f.number_field :bid, {class:'small-number', min:0 ,max:@hand.no_of_cards} %>
+		<%= f.number_field :bid, {class:'small-number', min:0 ,max:@hand.no_of_cards, autofocus: true }  %>
 	</div>
 	<hr/>
 	<%= f.submit :class=>'btn btn-success', :value=>'save' %>
