@@ -6,7 +6,7 @@ class GameService
 
   def start_game(trump_type, player_ids)
     raise 'Player already in game' if are_players_unique(player_ids)
-    @game = Game.new(trump_type_id: trump_type, status_id: 1)
+    @game = Game.create(trump_type_id: trump_type, status_id: 1)
     @trump_sequence = get_random_trump_sequence
     @round = 0;
     @hand_seq = 1;

@@ -120,6 +120,12 @@ describe GameService do
 		end
 	end
 
+	it 'should create hand_players with game values' do
+		@g = GameService.new
+		game = @g.start_game(1,{"0"=>"1", "1"=>"3"})
+		expect(game.hands.first.hand_players.first.game_id).to eql(game.id)
+	end
+
 	it 'should allow me to set a bid' do
 		player1 = Player.create(name: 'PlayerOne')
 		player2 = Player.create(name: 'PlayerTwo')

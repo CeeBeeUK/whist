@@ -1,6 +1,16 @@
-<h1>HandPlayers#bid</h1>
-<p>Find me in app/views/hand_players/create.html.erb</p>
+<% content_for :bcrumb do %>
+        <li><%= link_to "#{@game.status.name.humanize} games", game_list_path(qstatus: 'in_progress')  %></li>
+        <li><%= link_to "Game #{@game.id}", game_path(@game.id) %></li>
+        <li class="active"><%= "Bid for #{@hand_player.player.name}" %></li>
+<% end %>
+<h2><%= @game.trump_type.name %> game, round <%= @game.next_round %> of <%= @game.hands.size %></h2>
 
-<%= params %>
-<%= @hand.inspect %>
-<%= @hand_player.inspect %>
+<%= form_for :hand_player, url: { action: "createbid" } do |f| %>
+	<%= f.hidden_field :id %>
+	<h3><%= @hand_player.player.name %>'s bid</h3>
+	<div class="form-group">
+		<%= f.number_field :bid, {class:'small-number', min:0 ,max:@hand.no_of_cards} %>
+	</div>
+	<hr/>
+	<%= f.submit :class=>'btn btn-success', :value=>'save' %>
+<% end %>

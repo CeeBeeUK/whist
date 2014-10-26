@@ -25,10 +25,15 @@
                 <%= h.dealer.name %>
             <% end %>
             </td>
-      <% @game.player_list.each do |p| %>
+        <% @game.player_list.each do |p| %>
+            <% @this_player = h.hand_players.where("player_id=:p_id and hand_id=:h_id", p_id: p.id, h_id: h.sequence).first %>
             <td class="scores<%= ' dealer' if p.id==h.dealer_id %>">
-                <% if @game.next_round==h.sequence && p.id == h.next_player.id %>
-                    <a class="fa fa-plus-square-o fa-3x" href='#'></a>
+                <% if !@this_player.score.nil? %>
+                    <%= @this_player.score %>
+                <% elsif !@this_player.bid.nil? %>
+                    <%= @this_player.bid %>
+                <% elsif @game.next_round==h.sequence && p.id == h.next_player.id %>
+                    <%= link_to "", record_bid_path(h.next_hand_player.id), class:"fa fa-plus-square-o fa-3x add-bid" %>
                 <% end %>
             </td>
       <% end %>
