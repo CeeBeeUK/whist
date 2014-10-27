@@ -6,11 +6,17 @@ class HandPlayersController < ApplicationController
   def bid
   end
   def createbid
-  	if params[:hand_player][:bid].nil?
-		flash[:error] = "Please select a bid between 0 and #{@hand.no_of_cards}"
+  	begin
+  		puts '=======================' 
+  		puts params[:hand_player][:bid]
+	  	raise "Please select a bid between 0 and #{@hand.no_of_cards}" if params[:hand_player][:bid].blank?
+
+	    @gs = GameService.new
+	    @gs.set_bid(@hand, @hand_player, params[:hand_player][:bid])
+		redirect_to game_path(@game.id)
+	rescue => e
+		flash[:error] = e
 	  	render :bid
-    elsif @hand_player.update(bid: params[:hand_player][:bid])
-  		redirect_to game_path(@game.id)
 	end
   end
 

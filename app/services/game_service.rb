@@ -35,7 +35,7 @@ class GameService
 
   def set_bid(hand, hand_player, bid)
     if (hand.hand_players.size-1) == hand_player.sequence
-      if bid + hand.bid_total== hand.no_of_cards
+      if bid.to_i + hand.bid_total == hand.no_of_cards
         raise 'Dealer bid cannot equal number of cards in hand'
       end 
     end
