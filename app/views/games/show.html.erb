@@ -14,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-    <% @game.hands.each do |h| %>
+    <% @game.hands.order(:id).each do |h| %>
         <tr>
             <td class="center-align">
                 <%= h.no_of_cards %>
