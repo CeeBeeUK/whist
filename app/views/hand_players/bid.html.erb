@@ -7,12 +7,12 @@
 
 <%= form_for(:hand_player,:url=>{ action: "createbid" }, html: { method: 'post', class: 'form-horizontal'})  do |f| %>
 	<%= f.hidden_field :id %>
-	<div class="form-group">
-		<label for="" class="col-sm-2 control-label"><%= @hand_player.player.name %>'s bid</label>
-		<div class="col-sm-1">
+	<div class="form-group form-group-lg">
+		<label for="hand_player_bid" class="col-sm-2 control-label"><%= @hand_player.player.name %>'s bid</label>
+		<div class="col-sm-2">
 			<%= f.number_field :bid, {class:'small-number', min:0 ,max:@hand.no_of_cards, autofocus: true }  %>
 		</div>
-		<div class="col-sm-1">
+		<div class="col-sm-2">
 			<%= f.submit :class=>'btn btn-success', style: 'display: inline-block; vertical-align: middle;', :value=>'Enter bid' %>
 		</div>
 	</div>
