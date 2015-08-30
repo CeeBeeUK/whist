@@ -15,7 +15,7 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure: Xv+5TAsyDW6V3xYz38hultPDOjxmrKCBnsShmWTbJtwS9uuINcnsGUszajlsD3ijs9aYrGAWgROOLOV/GbT0fJ1GtGySQShD2Mmyx5+SHG99+k3h2YeqvqPmBz1NobisNaTQB1UsmofzcNvIxoNOEv4e8hW/k6nJdaaMGtrUy9Y=
+    secure: ccdNWlNtRAm2jDdEFYi/nuZxb0WAIDJ8M6l5QSouFcUDUWx49Co7nwGK50D96639G0MKoOr2cGrOhkjrEpdVqLiI3mLozNj51Dr1y8yq745EonjT4o2yIqdC3zNemjVGESYhMOMdynTYTKK3Wp4egFgHDJEqyP3hFpcdD8gELDE=
   app: bettingtrumps
   strategy: api
   on:
