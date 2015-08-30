@@ -16,17 +16,17 @@ gem 'cocoon', '~>1.2.0'
 gem 'select2-rails'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 5.0.3'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.1.0'
 
 # Devise for user authentication
 gem 'devise'
-gem 'devise_invitable', '~> 1.3.4'
+gem 'devise_invitable', '~> 1.5.2'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -35,7 +35,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 2.3.1'
 
 # Code climate CI integration
 gem "codeclimate-test-reporter", group: :test, require: nil
