@@ -1,10 +1,9 @@
 language: ruby
+sudo: false
 env:
 - CODECLIMATE_REPO_TOKEN=74fdf7c57926523ad6fbc063598933054941221d71ad94a42a17d2938e9c4850
 rvm:
-- 2.0.0
-before_install:
-- sudo apt-get update -qq
+- 2.2.3
 before_script:
 - psql -c 'create role pq login createdb;' -U postgres
 addons:

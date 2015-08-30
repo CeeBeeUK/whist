@@ -9,7 +9,7 @@ module FlashHelper
 
       type = :success if type == :notice
       type = :danger   if type == :alert
-      next unless ALERT_TYPES.include?(type)
+      next unless ALERT_TYPES.include?(type.to_sym)
 
       Array(message).each do |msg|
         text = content_tag(:div,
